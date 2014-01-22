@@ -4,31 +4,36 @@ library chapter07.generator;
 import 'dart:io';
 import 'package:di/generator.dart' as di_generator;
 import 'package:angular/tools/expression_extractor.dart' as ng_generator;
+import 'package:path/path.dart' as path;
 
 main() {
-  //var dartSdkPath = Platform.environment['DART_SDK'];
-  var dartSdkPath = '/home/zoechi/source/3rdparty/google/darteditor/dart-sdk';
+  var pathPrefix = '';
+  if(path.basename(path.current) == 'bin') {
+    pathPrefix = '../';
+  }
+
+  var dartSdkPath = Platform.environment['DART_SDK'];
   if (dartSdkPath == null || dartSdkPath.isEmpty) {
     throw 'export DART_SDK=/path/to/dart/sdk';
   }
-  var entryPointDartFile = 'example/index.dart';
+  var entryPointDartFile = '${pathPrefix}web/index.dart';
   var injectablesAnnotations =
       'angular.core.NgComponent,'
       'angular.core.NgController,'
       'angular.core.NgDirective,'
       'angular.core.NgFilter,'
-      'injectable.InjectableService,'
+      //'injectable.InjectableService,'
       'angular.core.service.NgInjectableService,'
-      'angular_ui_bootstrap.injectable_service';
-  var diOutputFile = 'example/di_factories_gen.dart';
+      'angular.ui.demo.injectable_service';
+  var diOutputFile = '${pathPrefix}web/di_factories_gen.dart';
   var packageRoots = 'packages';
 
   _runDiGenerator(dartSdkPath, entryPointDartFile, injectablesAnnotations,
       diOutputFile, packageRoots);
 
   var htmlRoot = '.';
-  var parserOutputFile = 'web/ng_parser_gen.dart';
-  var parserHeaderFile = 'lib/parser_gen_header.dart';
+  var parserOutputFile = '${pathPrefix}web/ng_parser_gen.dart';
+  var parserHeaderFile = '${pathPrefix}lib/parser_gen_header.dart';
   var parserFooterFile = ''; // we don't need anything in the footer, for now.
 
   _runNgGenerator(entryPointDartFile, htmlRoot, parserHeaderFile,

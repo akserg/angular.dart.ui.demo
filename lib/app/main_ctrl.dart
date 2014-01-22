@@ -9,7 +9,6 @@ class MainController {
   final dom.HtmlDocument _document;
 //  final ModalComponent _modal;
   final OrderByFilter _orderByFilter;
-  var _url = "http://50.116.42.77:3001";
   final UiElementList _modules;
   final Package _package;
   bool isCollapsed = true; // TODO why did the page throw an exception if this property is missing.

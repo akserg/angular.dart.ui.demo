@@ -1,5 +1,6 @@
 part of angular.ui.demo.app;
 
+@InjectableService()
 class UiElement {
   final String name;
   String _displayName;

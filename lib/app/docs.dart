@@ -1,5 +1,6 @@
 part of angular.ui.demo.app;
 
+@InjectableService()
 class Docs {
   final String html;
   String md = 'md';
