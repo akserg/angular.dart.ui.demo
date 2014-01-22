@@ -1,0 +1,18 @@
+name: angular_ui_demo
+version: 0.0.1
+author: Sergey Akopkokhyants <akserg@gmail.com>, Tonis Pool <tonis.pool@gmail.com>, Günter Zöchbauer <guenter@gzoechbauer.com>.
+description: Demo page for angular.dart.ui.
+homepage: http://akserg.github.io/angular.dart.ui.demo
+environment:
+  sdk: '>=1.0.0+10 <2.0.0'
+dependencies:
+  angular: '>=0.9.4'
+  browser: '>=0.9.1'
+  js: '>=0.2.1'
+  angular_ui:
+    path: ../angular.dart.ui
+    #git: git@github.com:akserg/angular.dart.ui.git
+  logging_handlers: any
+  markdown: any
+dev_dependencies:
+  unittest: '>=0.9.3'

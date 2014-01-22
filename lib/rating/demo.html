@@ -1,0 +1,15 @@
+<div ng-controller="rating-demo-ctrl">
+    <h4>Default</h4>
+    <rating value="ctrl.rate" max="ctrl.max" readonly="ctrl.isReadonly" on-hover="ctrl.hoveringOver(value)" on-leave="ctrl.overStar = null"></rating>
+    <span class="label" ng-class="{'label-warning': ctrl.percent < 30, 'label-info': ctrl.percent >= 30 && ctrl.percent < 70, 'label-success': ctrl.percent >= 70 }" ng-hide="ctrl.overStar == null || ctrl.isReadonly">{{ctrl.percent}}%</span>
+
+    <pre style="margin:15px 0;">Rate: <b>{{ctrl.rate}}</b> - Readonly is: <i>{{ctrl.isReadonly}}</i> - Hovering over: <b>{{ctrl.overStar != null ? ctrl.overStar : "none"}}</b></pre>
+
+    <button class="btn btn-sm btn-danger" ng-click="ctrl.rate = 0" ng-disabled="ctrl.isReadonly">Clear</button>
+    <button class="btn btn-sm btn-default" ng-click="ctrl.isReadonly = !ctrl.isReadonly">Toggle Readonly</button>
+    <hr />
+
+    <h4>Custom icons</h4>
+    <div ng-init="x = 5"><rating value="5" max="15" state-on="'glyphicon-ok-sign'" state-off="'glyphicon-ok-circle'"></rating> <b>(<i>Rate:</i> (not supported))</b></div>
+    <div ng-init="y = 2"><rating value="2" rating-states="ctrl.ratingStates"></rating> <b>(<i>Rate:</i> (not supported)</b></div>
+</div>
