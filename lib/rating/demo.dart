@@ -1,17 +1,15 @@
 library angular.ui.demo.rating;
 
-import 'package:angular/angular.dart' as ng;
+import 'package:angular/angular.dart';
 
 import 'package:logging/logging.dart' show Logger;
-final _logger = new Logger('demo.rating');
+final _log = new Logger('demo.rating');
 
-@ng.NgController(
+@NgController(
     selector: '[ng-controller=rating-demo-ctrl]',
     publishAs: 'ctrl'
 )
 class RatingDemoController {
-  ng.Scope _scope;
-
   int rate = 7;
   int max = 10;
   bool isReadonly = false;
@@ -25,8 +23,8 @@ class RatingDemoController {
                                            {'stateOff': 'glyphicon-off'}
                                            ];
 
-  RatingDemoController(this._scope) {
-    _logger.fine('RatingDemoController');
+  RatingDemoController() {
+    _log.fine('RatingDemoController');
   }
 
   void hoveringOver(int value) {

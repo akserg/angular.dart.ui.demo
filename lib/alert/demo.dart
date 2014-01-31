@@ -1,12 +1,12 @@
 library angular.ui.demo.alert;
 
-import 'package:angular/angular.dart' as ng;
+import 'package:angular/angular.dart';
 
 import 'package:logging/logging.dart' show Logger;
-final _logger = new Logger('demo.alert');
+final _log = new Logger('demo.alert');
 
 
-@ng.NgController(
+@NgController(
     selector: '[ng-controller=alert-demo-ctrl]',
     publishAs: 'ctrl')
 class AlertDemoController {
@@ -17,7 +17,7 @@ class AlertDemoController {
   ];
 
   AlertDemoController() {
-    _logger.fine('AlertDemoController');
+    _log.fine('AlertDemoController');
   }
 
   void addAlert() {
@@ -29,7 +29,7 @@ class AlertDemoController {
     if(alerts.length > index) {
       alerts.removeAt(index);
     } else {
-      _logger.fine('AlertDemoController.closeAlert($index (invalid!))');
+      _log.fine('AlertDemoController.closeAlert($index (invalid!))');
     }
   }
 }

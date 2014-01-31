@@ -3,14 +3,14 @@ library angular.ui.demo.accordion;
 import 'package:angular/angular.dart';
 
 import 'package:logging/logging.dart' show Logger;
-final _logger = new Logger('demo.accordion');
+final _log = new Logger('demo.accordion');
 
 @NgController(
     selector: '[ng-controller=accordion-demo-ctrl]',
     publishAs: 'ctrl')
 class AccordionDemoController {
   AccordionDemoController() {
-    _logger.fine('AccordionDemoController');
+    _log.fine('AccordionDemoController');
   }
 
   bool oneAtATime = true;

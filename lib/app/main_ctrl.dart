@@ -15,7 +15,7 @@ class MainController {
 
   MainController(this._scope, this._http, this._document, /*this._modal,*/ this._orderByFilter,
       this._modules, this._package) {
-    _logger.fine('MainController');
+    _log.fine('MainController');
   }
 
   String get allModules => _modules.map((e) => e.name).join(', ');

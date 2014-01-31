@@ -8,7 +8,7 @@ import 'package:markdown/markdown.dart' as markdown;
 import 'package:angular/angular.dart';
 import 'package:logging/logging.dart' show Logger;
 
-import 'injectable_service.dart';
+import 'package:angular_ui/helper/injectable_service.dart';
 
 part 'ui_elements.dart';
 part 'docs.dart';
@@ -17,4 +17,4 @@ part 'main_ctrl.dart';
 part 'package.dart';
 part 'ba_bind_html_directive.dart';
 
-final _logger = new Logger('main');
+final _log = new Logger('main');

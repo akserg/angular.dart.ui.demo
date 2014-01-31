@@ -3,7 +3,7 @@ library angular.ui.demo.dropdown_toggle;
 import 'package:angular/angular.dart' as ng;
 
 import 'package:logging/logging.dart' show Logger;
-final _logger = new Logger('demo.dropdown_toggle');
+final _log = new Logger('demo.dropdown_toggle');
 
 @ng.NgController(
     selector: '[ng-controller=dropdown-toggle-demo-ctrl]',
@@ -15,6 +15,6 @@ class DropdownToggleDemoController {
                         "but wait! A third!"
                         ];
   DropdownToggleController() {
-    _logger.fine('DropdownToggleDemoController');
+    _log.fine('DropdownToggleDemoController');
   }
 }

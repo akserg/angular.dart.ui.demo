@@ -2,19 +2,23 @@ library angular.ui.demo;
 
 
 import 'dart:html' as dom;
+import 'dart:async' as async;
 import 'package:angular/angular.dart';
+import 'package:angular/utils.dart';
 import 'package:logging/logging.dart' show Logger, Level;
 import 'package:logging_handlers/logging_handlers_shared.dart';
 
 import 'package:angular_ui_demo/app/app.dart';
 import 'package:angular_ui/angular_ui.dart';
-import 'package:angular_ui_demo/app/injectable_service.dart';
+import 'package:angular_ui/helper/injectable_service.dart'; // unused import is analyzer bug, it's referenced in @MirrorsUsed
 
 // import 'package:di/di.dart';
 // import 'package:perf_api/perf_api.dart';
 
 import 'package:angular_ui_demo/accordion/demo.dart';
 import 'package:angular_ui_demo/alert/demo.dart';
+import 'package:angular_ui_demo/buttons/demo.dart';
+import 'package:angular_ui_demo/carousel/demo.dart';
 import 'package:angular_ui_demo/collapse/demo.dart';
 import 'package:angular_ui_demo/dropdown_toggle/demo.dart';
 //import 'package:angular_ui_demo/modal/demo.dart';
@@ -37,13 +41,14 @@ import 'initializer_prod.dart' as init; // Use in prod/test.
         'angular.core.dom',
         'angular.core.parser',
         'angular.core.parser.dynamic_parser',
-        'angular.core.parser.static_parser',
-        'angular.routing',
+        'angular.core.parser.lexer',
+        'angular.core.parser.static_parser', // is this necessary
         dom.NodeTreeSanitizer,
+        'angular.directive',
         'angular.filter',
         'angular.perf',
+        'angular.routing',
         'perf_api',
-        'angular.directive',
         'angular.ui.demo',
         'angular.ui.demo.accordion',
         'angular.ui.demo.alert',
@@ -66,12 +71,12 @@ import 'initializer_prod.dart' as init; // Use in prod/test.
         NgComponent,
         NgDirective,
         NgController,
-        NgFilter,
-        NgAttr,
-        NgOneWay,
-        NgOneWayOneTime,
-        NgTwoWay,
-        NgCallback,
+        NgFilter, // maybe not necessary
+        NgAttr,   // - " -
+        NgOneWay, // - " -
+        NgOneWayOneTime, // - " -
+        NgTwoWay, // - " -
+        NgCallback, // - " -
         InjectableService
     ],
     override: '*'
@@ -79,20 +84,62 @@ import 'initializer_prod.dart' as init; // Use in prod/test.
 import 'dart:mirrors';
 
 
-final _logger = new Logger('main');
+final _log = new Logger('main');
 
 void main() {
   startQuickLogging();
   Logger.root.level = Level.FINEST;
-  _logger.fine('start app');
+  _log.fine('start app');
 
 
   ngBootstrap(module: new AngularUiDemoModule());
 }
 
+// remove this class when the bugfix is deployed
+// should be available with next update (after 0.9.5+2)
+@NgDirective(selector: 'textarea[ng-model]')
+@NgDirective(selector: 'input[type=text][ng-model]')
+@NgDirective(selector: 'input[type=password][ng-model]')
+@NgDirective(selector: 'input[type=url][ng-model]')
+@NgDirective(selector: 'input[type=email][ng-model]')
+@NgDirective(selector: 'input[type=number][ng-model]')
+class InputTextLikeDirective {
+  dom.Element inputElement;
+  NgModel ngModel;
+  Scope scope;
+  String _inputType;
+
+  get typedValue => (inputElement as dynamic).value;
+  set typedValue(value) => (inputElement as dynamic).value = (value == null) ? '' : value.toString();
+
+  InputTextLikeDirective(dom.Element this.inputElement, NgModel this.ngModel, Scope this.scope) {
+    ngModel.render = (value) {
+      if (value == null) value = '';
+
+      var currentValue = typedValue;
+      if (value != currentValue && !(value is num && currentValue is num && value.isNaN && currentValue.isNaN)) {
+        typedValue =  value;
+      }
+    };
+    inputElement.onChange.listen(relaxFnArgs(processValue));
+    inputElement.onKeyDown.listen((e) {
+      new async.Timer(Duration.ZERO, processValue);
+      scope.$skipAutoDigest();
+    });
+  }
+
+  processValue() {
+    ngModel.validate();
+    var value = typedValue;
+    if (value != ngModel.viewValue) {
+      scope.$apply(() => ngModel.viewValue = value);
+    }
+  }
+}
+
 class AngularUiDemoModule extends Module {
   AngularUiDemoModule() {
-    _logger.fine('AngularUiDemoModule');
+    _log.fine('AngularUiDemoModule');
 
     type(BaBindHtmlDirective);
     type(HeadController);
@@ -100,15 +147,16 @@ class AngularUiDemoModule extends Module {
 
     type(AccordionDemoController);
     type(AlertDemoController);
-    //type(ButtonsDemoController);
-    //type(CarouselDemoController);
+    type(ButtonsDemoController);
+    type(CarouselDemoController);
     type(CollapseDemoController);
     type(DropdownToggleDemoController);
     //type(ModalDemoController);
     //type(PositionDemoController);
     type(RatingDemoController);
-    //type(TimoutDemoController);
     //type(TabsDemoController);
+
+    type(InputTextLikeDirective); // remove when bug is fixed - see above
 
     type(UiElementList);
     type(Package);

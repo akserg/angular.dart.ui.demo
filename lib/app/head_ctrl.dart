@@ -7,7 +7,7 @@ part of angular.ui.demo.app;
 class HeadController {
   UiElementList _modules;
   HeadController(this._modules) {
-    _logger.fine('HeadController');
+    _log.fine('HeadController');
   }
   String someValue = 'HEAD';
 

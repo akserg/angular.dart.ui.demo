@@ -17,8 +17,6 @@ class UiElement {
   Future<Docs> readSource() {
     var completer = new Completer<Docs>();
 
-    print('${this.name}/demo.html');
-
     Future.wait([
       dom.HttpRequest.getString('packages/angular_ui_demo/${this.name}/demo.html').then((e) => e, onError: (e) => ''),
       dom.HttpRequest.getString('packages/angular_ui_demo/${this.name}/README.md').then((e) => e, onError: (e) => ''),
@@ -49,17 +47,17 @@ class UiElement {
 class UiElementList implements List<UiElement> {
   static final List<UiElement> _modules = [
      new UiElement('accordion', 'Accordion'),
-//     new UiElement('alert', 'Alert'),
-//     new UiElement('buttons', 'Buttons'),
-//     new UiElement('carousel', 'Carousel'),
-//     new UiElement('collapse', 'Collapse'),
+     new UiElement('alert', 'Alert'),
+     new UiElement('buttons', 'Buttons'),
+     new UiElement('carousel', 'Carousel'),
+     new UiElement('collapse', 'Collapse'),
 //     new UiElement('datepicker', 'Datepicker'),
-//     new UiElement('dropdown_toggle', 'Dropdown Toggle'),
+     new UiElement('dropdown_toggle', 'Dropdown Toggle'),
 //     new UiElement('modal', 'Modal'),
 //     new UiElement('pagination', 'Pagination'),
 //     new UiElement('popover', 'Popover'),
 //     new UiElement('progressbar', 'Progressbar'),
-//     new UiElement('rating', 'Rating'),
+     new UiElement('rating', 'Rating'),
 //     new UiElement('tabs' , 'Tabs'),
 //     new UiElement('timepicker', 'Timepicker'),
 //     new UiElement('tooltip', 'Tooltip'),

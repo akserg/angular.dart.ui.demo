@@ -1,12 +1,11 @@
-library angular_ui_bootstrap.demo.tabs;
+library angular.ui.demo.demo.tabs;
 
 import 'dart:async' show Timer;
 import 'dart:html' as dom;
-//import 'package:observe/observe.dart' show reflectable;
 import 'package:angular/angular.dart' as ng;
 
 import 'package:logging/logging.dart' show Logger;
-final _logger = new Logger('main');
+final _log = new Logger('main');
 
 
 @ng.NgController(
@@ -20,7 +19,7 @@ class TabsDemoController {
   ];
 
   TabsDemoController() {
-    _logger.fine('TabsDemoController');
+    _log.fine('TabsDemoController');
   }
 
   void alertMe () {
