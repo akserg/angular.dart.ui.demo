@@ -11,11 +11,11 @@ Demo page for [Dart Angular-UI](https://github.com/akserg/angular.dart.ui).
 - clone this GitHub repository to a local directory and name it `angular.dart.ui.demo.gh_pages`
 - change directory to `angular.dart.ui.demo.gh_pages`
 - run `git checkout -b gh_pages`
-- change  directory to `angular.dart.ui.demo/bin`
-- run `dart generator.dart`
 
 #### update
 
+- change  directory to `angular.dart.ui.demo/bin`
+- run `dart generator.dart`
 - change directory to `angular.dart.ui.demo`
 - ensure that index.dart imports `import 'initializer_prod.dart' as init;` and not `import 'initializer_dev.dart' as init;`
 - run `pub build`
