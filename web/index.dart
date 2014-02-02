@@ -10,7 +10,7 @@ import 'package:logging_handlers/logging_handlers_shared.dart';
 
 import 'package:angular_ui_demo/app/app.dart';
 import 'package:angular_ui/angular_ui.dart';
-import 'package:angular_ui/helper/injectable_service.dart'; // unused import is analyzer bug, it's referenced in @MirrorsUsed
+import 'package:angular_ui/utils/injectable_service.dart'; // unused import is analyzer bug, it's referenced in @MirrorsUsed
 
 // import 'package:di/di.dart';
 // import 'package:perf_api/perf_api.dart';
@@ -28,55 +28,55 @@ import 'package:angular_ui_demo/rating/demo.dart';
 // During development it's easier to use dynamic parser and injector, so use
 // initializer-dev.dart instead. Before using initializer-prod.dart make sure
 // you run: dart -c bin/generator.dart
-import 'initializer_prod.dart' as init; // Use in prod/test.
-//import 'initializer_dev.dart' as init; // Use in dev.
+//import 'initializer_prod.dart' as init; // Use in prod/test.
+import 'initializer_dev.dart' as init; // Use in dev.
 
 // Used by dart2js to indicate which targets are being reflected on, to allow
 // tree-shaking.
 
 @MirrorsUsed(
     targets: const [
-        'angular',
-        'angular.core',
-        'angular.core.dom',
-        'angular.core.parser',
-        'angular.core.parser.dynamic_parser',
-        'angular.core.parser.lexer',
-        'angular.core.parser.static_parser', // is this necessary
-        dom.NodeTreeSanitizer,
-        'angular.directive',
-        'angular.filter',
-        'angular.perf',
-        'angular.routing',
-        'perf_api',
-        'angular.ui.demo',
-        'angular.ui.demo.accordion',
-        'angular.ui.demo.alert',
-        'angular.ui.demo.buttons',
-        'angular.ui.demo.carousel',
-        'angular.ui.demo.collapse',
-        'angular.ui.demo.dropdown_toggle',
-//        'angular.ui.demo.modal',
-        'angular.ui.demo.position',
-        'angular.ui.demo.rating',
-//        'angular.ui.demo.tabs',
-        'angular.ui.demo.transition',
-
-        'dart.dom.html.HtmlDocument',
-        'angular.ui.demo.app_initializer.prod',
-        'angular.ui.demo.app_initializer.dev'
+//        'angular',
+//        'angular.core',
+//        'angular.core.dom',
+//        'angular.core.parser',
+//        'angular.core.parser.dynamic_parser',
+//        'angular.core.parser.lexer',
+//        'angular.core.parser.static_parser', // is this necessary
+//        dom.NodeTreeSanitizer,
+//        'angular.directive',
+//        'angular.filter',
+//        'angular.perf',
+//        'angular.routing',
+//        'perf_api',
+//        'angular.ui.demo',
+//        'angular.ui.demo.accordion',
+//        'angular.ui.demo.alert',
+//        'angular.ui.demo.buttons',
+//        'angular.ui.demo.carousel',
+//        'angular.ui.demo.collapse',
+//        'angular.ui.demo.dropdown_toggle',
+////        'angular.ui.demo.modal',
+//        'angular.ui.demo.position',
+//        'angular.ui.demo.rating',
+////        'angular.ui.demo.tabs',
+//        'angular.ui.demo.transition',
+//
+//        'dart.dom.html.HtmlDocument',
+//        'angular.ui.demo.app_initializer.prod',
+//        'angular.ui.demo.app_initializer.dev'
     ],
     metaTargets: const [
-        NgInjectableService,
-        NgComponent,
-        NgDirective,
-        NgController,
-        NgFilter, // maybe not necessary
-        NgAttr,   // - " -
-        NgOneWay, // - " -
-        NgOneWayOneTime, // - " -
-        NgTwoWay, // - " -
-        NgCallback, // - " -
+//        NgInjectableService,
+//        NgComponent,
+//        NgDirective,
+//        NgController,
+//        NgFilter, // maybe not necessary
+//        NgAttr,   // - " -
+//        NgOneWay, // - " -
+//        NgOneWayOneTime, // - " -
+//        NgTwoWay, // - " -
+//        NgCallback, // - " -
         InjectableService
     ],
     override: '*'

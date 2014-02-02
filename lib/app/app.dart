@@ -8,7 +8,7 @@ import 'package:markdown/markdown.dart' as markdown;
 import 'package:angular/angular.dart';
 import 'package:logging/logging.dart' show Logger;
 
-import 'package:angular_ui/helper/injectable_service.dart';
+import 'package:angular_ui/utils/injectable_service.dart';
 
 part 'ui_elements.dart';
 part 'docs.dart';
