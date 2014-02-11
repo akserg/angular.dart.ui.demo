@@ -1,7 +1,7 @@
 angular.dart.ui.demo [![Build Status](https://drone.io/github.com/akserg/angular.dart.ui.demo/status.png)](https://drone.io/github.com/akserg/angular.dart.ui.demo/latest)
 ====================
 
-Demo page for [Dart Angular-UI](https://github.com/akserg/angular.dart.ui).
+Demo page for [Dart Angular-UI](http://akserg.github.io/angular.dart.ui.demo/build/index.html).
 
 ### Build
 
