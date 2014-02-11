@@ -5,7 +5,7 @@ import 'dart:html' as dom;
 import 'dart:async' as async;
 import 'package:angular/angular.dart';
 import 'package:angular/utils.dart';
-import 'package:logging/logging.dart' show Logger, Level;
+import 'package:logging/logging.dart' show Logger, Level, hierarchicalLoggingEnabled;
 import 'package:logging_handlers/logging_handlers_shared.dart';
 
 import 'package:angular_ui_demo/app/app.dart';
@@ -87,7 +87,8 @@ import 'dart:mirrors';
 final _log = new Logger('main');
 
 void main() {
-  startQuickLogging();
+  hierarchicalLoggingEnabled = true;
+  Logger.root.onRecord.listen(new LogPrintHandler()..printFunc = (e) => dom.window.console.debug(e.toString()));
   Logger.root.level = Level.FINEST;
   _log.fine('start app');
 
