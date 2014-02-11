@@ -1,7 +1,11 @@
 angular.dart.ui.demo [![Build Status](https://drone.io/github.com/akserg/angular.dart.ui.demo/status.png)](https://drone.io/github.com/akserg/angular.dart.ui.demo/latest)
 ====================
 
+### Demo
+
 Demo page for [Dart Angular-UI](http://akserg.github.io/angular.dart.ui.demo/build/index.html).
+
+**Carousel is not yet working in Chrome due to missing ShadowDOM CSS selector support.**
 
 ### Build
 
