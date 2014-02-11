@@ -57,48 +57,6 @@ void main() {
   ngBootstrap(module: new AngularUiDemoModule());
 }
 
-// remove this class when the bugfix is deployed
-// should be available with next update (after 0.9.5+2)
-@NgDirective(selector: 'textarea[ng-model]')
-@NgDirective(selector: 'input[type=text][ng-model]')
-@NgDirective(selector: 'input[type=password][ng-model]')
-@NgDirective(selector: 'input[type=url][ng-model]')
-@NgDirective(selector: 'input[type=email][ng-model]')
-@NgDirective(selector: 'input[type=number][ng-model]')
-class InputTextLikeDirective {
-  dom.Element inputElement;
-  NgModel ngModel;
-  Scope scope;
-  String _inputType;
-
-  get typedValue => (inputElement as dynamic).value;
-  set typedValue(value) => (inputElement as dynamic).value = (value == null) ? '' : value.toString();
-
-  InputTextLikeDirective(dom.Element this.inputElement, NgModel this.ngModel, Scope this.scope) {
-    ngModel.render = (value) {
-      if (value == null) value = '';
-
-      var currentValue = typedValue;
-      if (value != currentValue && !(value is num && currentValue is num && value.isNaN && currentValue.isNaN)) {
-        typedValue =  value;
-      }
-    };
-    inputElement.onChange.listen(relaxFnArgs(processValue));
-    inputElement.onKeyDown.listen((e) {
-      new async.Timer(Duration.ZERO, processValue);
-      scope.$skipAutoDigest();
-    });
-  }
-
-  processValue() {
-    ngModel.validate();
-    var value = typedValue;
-    if (value != ngModel.viewValue) {
-      scope.$apply(() => ngModel.viewValue = value);
-    }
-  }
-}
-
 class AngularUiDemoModule extends Module {
   AngularUiDemoModule() {
     _log.fine('AngularUiDemoModule');
