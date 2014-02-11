@@ -26,8 +26,9 @@ class BaBindHtmlDirective {
   Compiler _compiler;
   Scope _scope;
   Injector _injector;
+  DirectiveMap _directiveMap;
 
-  BaBindHtmlDirective(this._element, this._scope, this._injector, this._compiler) {
+  BaBindHtmlDirective(this._element, this._scope, this._injector, this._compiler, this._directiveMap) {
     _log.fine('BaBindHtmlDirective');
     List<String> ngDirectiveAttributes = ['ng-class', 'ng-change', 'ng-click', 'ng-controller', 'ng-disabled', 'ng-hide', 'ng-init', 'ng-model', 'ng-options', 'ng-repeat', 'ng-required', 'ng-show', 'ng-src'];
     ngDirectiveAttributes.addAll(['accordion-demo-ctrl', 'rating-demo-ctrl']);
@@ -78,7 +79,7 @@ class BaBindHtmlDirective {
     _element.setInnerHtml((value == null ? '' : value.toString()),
                                              validator: validator);
     if(value != null) {
-      BlockFactory template = _compiler(_element.children);
+      BlockFactory template = _compiler(_element.children, _directiveMap);
       Block block = template.bind(_injector)(_scope);
     }
   }
