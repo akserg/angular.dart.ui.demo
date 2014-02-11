@@ -1,4 +1,4 @@
-library angular_ui_bootstrap.demo.app_initializer.dev;
+library app_initializer_dev;
 
 import 'package:angular/angular.dart';
 import 'package:di/di.dart';

@@ -4,230 +4,271 @@ import 'package:angular/angular.dart';
 import 'package:angular/core/parser/utils.dart';
 
 typedef Function FilterLookup(String filterName);
-// Found 210 expressions
-StaticParserFunctions functions(FilterLookup filters)
+// Found 251 expressions
+StaticParserFunctions functions()
     => new StaticParserFunctions(
-           buildEval(filters), buildAssign(filters));
+           buildEval(), buildAssign());
 
-Map<String, Function> buildEval(FilterLookup filters) {
+Map<String, Function> buildEval() {
   return {
-    "dynamicPopover": (scope) => _dynamicPopover(scope),
-    "dynamicPopoverTitle": (scope) => _dynamicPopoverTitle(scope),
-    "changed()": (scope) => ensureFunction(_changed(scope), "changed")(),
-    "mytime": (scope) => _mytime(scope),
-    "mytime ": (scope) => _mytime(scope),
-    "hstep": (scope) => _hstep(scope),
-    "mstep": (scope) => _mstep(scope),
-    "toggleMode()": (scope) => ensureFunction(_toggleMode(scope), "toggleMode")(),
-    "update()": (scope) => ensureFunction(_update(scope), "update")(),
-    "clear()": (scope) => ensureFunction(_clear(scope), "clear")(),
-    " item ": (scope) => _item(scope),
-    " selected.item ": (scope) => _item(_selected(scope)),
-    "open()": (scope) => ensureFunction(_open(scope), "open")(),
-    "selected": (scope) => _selected(scope),
-    " selected ": (scope) => _selected(scope),
-    "dt  ": (scope) => _dt(scope),
-    "dt": (scope) => _dt(scope),
-    "format": (scope) => _format(scope),
-    "true": (scope) => true,
-    "open(\$event)": (scope) => ensureFunction(_open(scope), "open")(_$event(scope)),
-    "today()": (scope) => ensureFunction(_today(scope), "today")(),
-    "dt = '2009-08-24'": (scope) => _set$dt(scope, r'2009-08-24'),
-    "toggleWeeks()": (scope) => ensureFunction(_toggleWeeks(scope), "toggleWeeks")(),
-    "toggleMin()": (scope) => ensureFunction(_toggleMin(scope), "toggleMin")(),
-    "ctrl.oneAtATime": (scope) => _oneAtATime(_ctrl(scope)),
-    "group['title']": (scope) => getKeyed(_group(scope), r'title'),
-    "ctrl.groups": (scope) => _groups(_ctrl(scope)),
-    "group.content": (scope) => _content(_group(scope)),
-    "ctrl.addItem()": (scope) => ensureFunction(_addItem(_ctrl(scope)), "addItem")(),
-    "ctrl.items": (scope) => _items(_ctrl(scope)),
-    "item": (scope) => _item(scope),
-    "isOpen": (scope) => _isOpen(scope),
-    "{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}": (scope) => { 'glyphicon-chevron-down': _isOpen(scope), 'glyphicon-chevron-right': !toBool(_isOpen(scope)) },
-    "ctrl.tabs[0]['active'] = true": (scope) => setKeyed(getKeyed(_tabs(_ctrl(scope)), 0), r'active', true),
-    "ctrl.tabs[1]['active'] = true": (scope) => setKeyed(getKeyed(_tabs(_ctrl(scope)), 1), r'active', true),
-    "ctrl.tabs[1]['disabled'] = !ctrl.tabs[1]['disabled']": (scope) => setKeyed(getKeyed(_tabs(_ctrl(scope)), 1), r'disabled', !toBool(getKeyed(getKeyed(_tabs(_ctrl(scope)), 1), r'disabled'))),
-    "tab['title']": (scope) => getKeyed(_tab(scope), r'title'),
-    "ctrl.tabs": (scope) => _tabs(_ctrl(scope)),
-    "tab['content']": (scope) => getKeyed(_tab(scope), r'content'),
-    "dynamicTooltipText": (scope) => _dynamicTooltipText(scope),
-    "dynamicTooltip": (scope) => _dynamicTooltip(scope),
-    "htmlTooltip": (scope) => _htmlTooltip(scope),
-    "currentPage": (scope) => _currentPage(scope),
-    "setPage(3)": (scope) => ensureFunction(_setPage(scope), "setPage")(3),
-    "bigCurrentPage": (scope) => _bigCurrentPage(scope),
-    "numPages": (scope) => _numPages(scope),
-    "singleModel": (scope) => _singleModel(scope),
-    "checkModel": (scope) => _checkModel(scope),
-    "checkModel.left": (scope) => _left(_checkModel(scope)),
-    "checkModel.middle": (scope) => _middle(_checkModel(scope)),
-    "checkModel.right": (scope) => _right(_checkModel(scope)),
-    "radioModel": (scope) => _radioModel(scope),
-    "match.model.flag": (scope) => _flag(_model(_match(scope))),
-    "selected ": (scope) => _selected(scope),
-    "asyncSelected ": (scope) => _asyncSelected(scope),
-    "asyncSelected": (scope) => _asyncSelected(scope),
-    "loadingLocations": (scope) => _loadingLocations(scope),
-    "customSelected": (scope) => _customSelected(scope),
-    "slides": (scope) => _slides(scope),
-    "slide.active": (scope) => _active(_slide(scope)),
-    "slide.image": (scope) => _image(_slide(scope)),
-    "\$index": (scope) => _$index(scope),
-    "slide.text": (scope) => _text(_slide(scope)),
-    "addSlide()": (scope) => ensureFunction(_addSlide(scope), "addSlide")(),
-    "myInterval": (scope) => _myInterval(scope),
-    "choice": (scope) => _choice(scope),
-    "random()": (scope) => ensureFunction(_random(scope), "random")(),
-    "dynamic": (scope) => _dynamic(scope),
-    "max": (scope) => _max(scope),
-    "type": (scope) => _type(scope),
-    "showWarning": (scope) => _showWarning(scope),
-    "randomStacked()": (scope) => ensureFunction(_randomStacked(scope), "randomStacked")(),
-    "bar.type": (scope) => _type(_bar(scope)),
-    "stacked": (scope) => _stacked(scope),
-    "bar.value < 5": (scope) => (_value(_bar(scope)) < 5),
-    "bar.value": (scope) => _value(_bar(scope)),
-    "ctrl.alerts": (scope) => _alerts(_ctrl(scope)),
-    "alert['type']": (scope) => getKeyed(_alert(scope), r'type'),
-    "ctrl.closeAlert(\$index)": (scope) => ensureFunction(_closeAlert(_ctrl(scope)), "closeAlert")(_$index(scope)),
-    "alert['msg']": (scope) => getKeyed(_alert(scope), r'msg'),
-    "ctrl.addAlert()": (scope) => ensureFunction(_addAlert(_ctrl(scope)), "addAlert")(),
-    "ctrl.max": (scope) => _max(_ctrl(scope)),
-    "ctrl.rate": (scope) => _rate(_ctrl(scope)),
-    "ctrl.isReadonly": (scope) => _isReadonly(_ctrl(scope)),
-    "ctrl.hoveringOver(value)": (scope) => ensureFunction(_hoveringOver(_ctrl(scope)), "hoveringOver")(_value(scope)),
-    "ctrl.overStar = null": (scope) => _set$overStar(_ensure$ctrl(scope), null),
-    "{'label-warning': ctrl.percent < 30, 'label-info': ctrl.percent >= 30 && ctrl.percent < 70, 'label-success': ctrl.percent >= 70 }": (scope) => { 'label-warning': (_percent(_ctrl(scope)) < 30), 'label-info': (toBool((_percent(_ctrl(scope)) >= 30)) && toBool((_percent(_ctrl(scope)) < 70))), 'label-success': (_percent(_ctrl(scope)) >= 70) },
-    "ctrl.overStar == null || ctrl.isReadonly": (scope) => (toBool((_overStar(_ctrl(scope)) == null)) || toBool(_isReadonly(_ctrl(scope)))),
-    "ctrl.percent": (scope) => _percent(_ctrl(scope)),
-    "ctrl.overStar != null ? ctrl.overStar : \"none\"": (scope) => toBool((_overStar(_ctrl(scope)) != null)) ? _overStar(_ctrl(scope)) : r'none',
-    "ctrl.rate = 0": (scope) => _set$rate(_ensure$ctrl(scope), 0),
-    "ctrl.isReadonly = !ctrl.isReadonly": (scope) => _set$isReadonly(_ensure$ctrl(scope), !toBool(_isReadonly(_ctrl(scope)))),
-    "15": (scope) => 15,
-    "5": (scope) => 5,
-    "'glyphicon-ok-sign'": (scope) => r'glyphicon-ok-sign',
-    "'glyphicon-ok-circle'": (scope) => r'glyphicon-ok-circle',
-    "2": (scope) => 2,
-    "ctrl.ratingStates": (scope) => _ratingStates(_ctrl(scope)),
-    "ctrl.isCollapsed = !ctrl.isCollapsed": (scope) => _set$isCollapsed(_ensure$ctrl(scope), !toBool(_isCollapsed(_ctrl(scope)))),
-    "ctrl.isCollapsed": (scope) => _isCollapsed(_ctrl(scope)),
-    "ctrl.isOpen = !ctrl.isOpen": (scope) => _set$isOpen(_ensure$ctrl(scope), !toBool(_isOpen(_ctrl(scope)))),
-    "ctrl.heading": (scope) => _heading(_ctrl(scope)),
-    "!ctrl.isOpen": (scope) => !toBool(_isOpen(_ctrl(scope))),
-    "\"alert-\" + (t.type != null ? t.type : \"warning\")": (scope) => autoConvertAdd(r'alert-', toBool((_type(_t(scope)) != null)) ? _type(_t(scope)) : r'warning'),
-    "t.closeHandler()": (scope) => ensureFunction(_closeHandler(_t(scope)), "closeHandler")(),
-    "t.showable": (scope) => _showable(_t(scope)),
-    "ctrl.reset()": (scope) => ensureFunction(_reset(_ctrl(scope)), "reset")(),
-    "ctrl.range": (scope) => _range(_ctrl(scope)),
-    "ctrl.stateClass(\$index, r)": (scope) => ensureFunction(_stateClass(_ctrl(scope)), "stateClass")(_$index(scope), _r(scope)),
-    "ctrl.rate(\$index + 1)": (scope) => ensureFunction(_rate(_ctrl(scope)), "rate")(autoConvertAdd(_$index(scope), 1)),
-    "ctrl.enter(\$index + 1)": (scope) => ensureFunction(_enter(_ctrl(scope)), "enter")(autoConvertAdd(_$index(scope), 1)),
-    "messages": (scope) => _messages(scope),
-    "": (scope) {
+    "dynamicPopover": (scope, filters) => _dynamicPopover(scope),
+    "dynamicPopoverTitle": (scope, filters) => _dynamicPopoverTitle(scope),
+    "changed()": (scope, filters) => ensureFunction(_changed(scope), "changed")(),
+    "mytime": (scope, filters) => _mytime(scope),
+    "mytime ": (scope, filters) => _mytime(scope),
+    "hstep": (scope, filters) => _hstep(scope),
+    "mstep": (scope, filters) => _mstep(scope),
+    "toggleMode()": (scope, filters) => ensureFunction(_toggleMode(scope), "toggleMode")(),
+    "update()": (scope, filters) => ensureFunction(_update(scope), "update")(),
+    "clear()": (scope, filters) => ensureFunction(_clear(scope), "clear")(),
+    " item ": (scope, filters) => _item(scope),
+    " selected.item ": (scope, filters) => _item(_selected(scope)),
+    "open()": (scope, filters) => ensureFunction(_open(scope), "open")(),
+    "selected": (scope, filters) => _selected(scope),
+    " selected ": (scope, filters) => _selected(scope),
+    "dt  ": (scope, filters) => _dt(scope),
+    "dt": (scope, filters) => _dt(scope),
+    "format": (scope, filters) => _format(scope),
+    "true": (scope, filters) => true,
+    "open(\$event)": (scope, filters) => ensureFunction(_open(scope), "open")(_$event(scope)),
+    "today()": (scope, filters) => ensureFunction(_today(scope), "today")(),
+    "dt = '2009-08-24'": (scope, filters) => _set$dt(scope, r'2009-08-24'),
+    "toggleWeeks()": (scope, filters) => ensureFunction(_toggleWeeks(scope), "toggleWeeks")(),
+    "toggleMin()": (scope, filters) => ensureFunction(_toggleMin(scope), "toggleMin")(),
+    "ctrl.oneAtATime": (scope, filters) => _oneAtATime(_ctrl(scope)),
+    "group['title']": (scope, filters) => getKeyed(_group(scope), r'title'),
+    "ctrl.groups": (scope, filters) => _groups(_ctrl(scope)),
+    "group.content": (scope, filters) => _content(_group(scope)),
+    "ctrl.addItem()": (scope, filters) => ensureFunction(_addItem(_ctrl(scope)), "addItem")(),
+    "ctrl.items": (scope, filters) => _items(_ctrl(scope)),
+    "item": (scope, filters) => _item(scope),
+    "isOpen": (scope, filters) => _isOpen(scope),
+    "{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}": (scope, filters) => { 'glyphicon-chevron-down': _isOpen(scope), 'glyphicon-chevron-right': !toBool(_isOpen(scope)) },
+    "ctrl.tabs[0]['active'] = true": (scope, filters) => setKeyed(getKeyed(_tabs(_ctrl(scope)), 0), r'active', true),
+    "ctrl.tabs[1]['active'] = true": (scope, filters) => setKeyed(getKeyed(_tabs(_ctrl(scope)), 1), r'active', true),
+    "ctrl.tabs[1]['disabled'] = !ctrl.tabs[1]['disabled']": (scope, filters) => setKeyed(getKeyed(_tabs(_ctrl(scope)), 1), r'disabled', !toBool(getKeyed(getKeyed(_tabs(_ctrl(scope)), 1), r'disabled'))),
+    "tab['title']": (scope, filters) => getKeyed(_tab(scope), r'title'),
+    "ctrl.tabs": (scope, filters) => _tabs(_ctrl(scope)),
+    "tab['content']": (scope, filters) => getKeyed(_tab(scope), r'content'),
+    "dynamicTooltipText": (scope, filters) => _dynamicTooltipText(scope),
+    "dynamicTooltip": (scope, filters) => _dynamicTooltip(scope),
+    "htmlTooltip": (scope, filters) => _htmlTooltip(scope),
+    "currentPage": (scope, filters) => _currentPage(scope),
+    "setPage(3)": (scope, filters) => ensureFunction(_setPage(scope), "setPage")(3),
+    "bigCurrentPage": (scope, filters) => _bigCurrentPage(scope),
+    "numPages": (scope, filters) => _numPages(scope),
+    "ctrl.singleModel": (scope, filters) => _singleModel(_ctrl(scope)),
+    "ctrl.checkModelString": (scope, filters) => _checkModelString(_ctrl(scope)),
+    "ctrl.checkModel['left']": (scope, filters) => getKeyed(_checkModel(_ctrl(scope)), r'left'),
+    "ctrl.checkModel['middle']": (scope, filters) => getKeyed(_checkModel(_ctrl(scope)), r'middle'),
+    "ctrl.checkModel['right']": (scope, filters) => getKeyed(_checkModel(_ctrl(scope)), r'right'),
+    "ctrl.radioModel": (scope, filters) => _radioModel(_ctrl(scope)),
+    "match.model.flag": (scope, filters) => _flag(_model(_match(scope))),
+    "selected ": (scope, filters) => _selected(scope),
+    "asyncSelected ": (scope, filters) => _asyncSelected(scope),
+    "asyncSelected": (scope, filters) => _asyncSelected(scope),
+    "loadingLocations": (scope, filters) => _loadingLocations(scope),
+    "customSelected": (scope, filters) => _customSelected(scope),
+    "ctrl.myInterval": (scope, filters) => _myInterval(_ctrl(scope)),
+    "ctrl.slides": (scope, filters) => _slides(_ctrl(scope)),
+    "slide['active']": (scope, filters) => getKeyed(_slide(scope), r'active'),
+    "slide['image']": (scope, filters) => getKeyed(_slide(scope), r'image'),
+    "\$index": (scope, filters) => _$index(scope),
+    "slide['text']": (scope, filters) => getKeyed(_slide(scope), r'text'),
+    "ctrl.addSlide()": (scope, filters) => ensureFunction(_addSlide(_ctrl(scope)), "addSlide")(),
+    "ctrl.myIntervalAsString": (scope, filters) => _myIntervalAsString(_ctrl(scope)),
+    "choice": (scope, filters) => _choice(scope),
+    "55": (scope, filters) => 55,
+    "22": (scope, filters) => 22,
+    "166": (scope, filters) => 166,
+    "200": (scope, filters) => 200,
+    "random()": (scope, filters) => ensureFunction(_random(scope), "random")(),
+    "dynamic": (scope, filters) => _dynamic(scope),
+    "max": (scope, filters) => _max(scope),
+    "false": (scope, filters) => false,
+    "type": (scope, filters) => _type(scope),
+    "showWarning": (scope, filters) => _showWarning(scope),
+    "randomStacked()": (scope, filters) => ensureFunction(_randomStacked(scope), "randomStacked")(),
+    "bar.type": (scope, filters) => _type(_bar(scope)),
+    "stacked": (scope, filters) => _stacked(scope),
+    "bar.value": (scope, filters) => _value(_bar(scope)),
+    "bar.value < 5": (scope, filters) => (_value(_bar(scope)) < 5),
+    "ctrl.alerts": (scope, filters) => _alerts(_ctrl(scope)),
+    "alert['type']": (scope, filters) => getKeyed(_alert(scope), r'type'),
+    "ctrl.closeAlert(\$index)": (scope, filters) => ensureFunction(_closeAlert(_ctrl(scope)), "closeAlert")(_$index(scope)),
+    "alert['msg']": (scope, filters) => getKeyed(_alert(scope), r'msg'),
+    "ctrl.addAlert()": (scope, filters) => ensureFunction(_addAlert(_ctrl(scope)), "addAlert")(),
+    "ctrl.max": (scope, filters) => _max(_ctrl(scope)),
+    "ctrl.rate": (scope, filters) => _rate(_ctrl(scope)),
+    "ctrl.isReadonly": (scope, filters) => _isReadonly(_ctrl(scope)),
+    "ctrl.hoveringOver(value)": (scope, filters) => ensureFunction(_hoveringOver(_ctrl(scope)), "hoveringOver")(_value(scope)),
+    "ctrl.overStar = null": (scope, filters) => _set$overStar(_ensure$ctrl(scope), null),
+    "{'label-warning': ctrl.percent < 30, 'label-info': ctrl.percent >= 30 && ctrl.percent < 70, 'label-success': ctrl.percent >= 70 }": (scope, filters) => { 'label-warning': (_percent(_ctrl(scope)) < 30), 'label-info': (toBool((_percent(_ctrl(scope)) >= 30)) && toBool((_percent(_ctrl(scope)) < 70))), 'label-success': (_percent(_ctrl(scope)) >= 70) },
+    "ctrl.overStar == null || ctrl.isReadonly": (scope, filters) => (toBool((_overStar(_ctrl(scope)) == null)) || toBool(_isReadonly(_ctrl(scope)))),
+    "ctrl.percent": (scope, filters) => _percent(_ctrl(scope)),
+    "ctrl.overStar != null ? ctrl.overStar : \"none\"": (scope, filters) => toBool((_overStar(_ctrl(scope)) != null)) ? _overStar(_ctrl(scope)) : r'none',
+    "ctrl.rate = 0": (scope, filters) => _set$rate(_ensure$ctrl(scope), 0),
+    "ctrl.isReadonly = !ctrl.isReadonly": (scope, filters) => _set$isReadonly(_ensure$ctrl(scope), !toBool(_isReadonly(_ctrl(scope)))),
+    "15": (scope, filters) => 15,
+    "5": (scope, filters) => 5,
+    "'glyphicon-ok-sign'": (scope, filters) => r'glyphicon-ok-sign',
+    "'glyphicon-ok-circle'": (scope, filters) => r'glyphicon-ok-circle',
+    "2": (scope, filters) => 2,
+    "ctrl.ratingStates": (scope, filters) => _ratingStates(_ctrl(scope)),
+    "ctrl.isCollapsed = !ctrl.isCollapsed": (scope, filters) => _set$isCollapsed(_ensure$ctrl(scope), !toBool(_isCollapsed(_ctrl(scope)))),
+    "ctrl.isCollapsed": (scope, filters) => _isCollapsed(_ctrl(scope)),
+    " m.windowClass ": (scope, filters) => _windowClass(_m(scope)),
+    "{in: m.animate.toString()}": (scope, filters) => { 'in': ensureFunction(_toString(_animate(_m(scope))), "toString")() },
+    "m.close(\$event)": (scope, filters) => ensureFunction(_close(_m(scope)), "close")(_$event(scope)),
+    "ctrl.isOpen = !ctrl.isOpen": (scope, filters) => _set$isOpen(_ensure$ctrl(scope), !toBool(_isOpen(_ctrl(scope)))),
+    "ctrl.heading": (scope, filters) => _heading(_ctrl(scope)),
+    "!ctrl.isOpen": (scope, filters) => !toBool(_isOpen(_ctrl(scope))),
+    "\"alert-\" + (t.type != null ? t.type : \"warning\")": (scope, filters) => autoConvertAdd(r'alert-', toBool((_type(_t(scope)) != null)) ? _type(_t(scope)) : r'warning'),
+    "t.closeHandler()": (scope, filters) => ensureFunction(_closeHandler(_t(scope)), "closeHandler")(),
+    "t.showable": (scope, filters) => _showable(_t(scope)),
+    "classes": (scope, filters) => _classes(scope),
+    "[ctrl.type, 'progress-bar-' + ctrl.type,  ctrl.classes]": (scope, filters) => [ _type(_ctrl(scope)), autoConvertAdd(r'progress-bar-', _type(_ctrl(scope))), _classes(_ctrl(scope)) ],
+    "ctrl.classes": (scope, filters) => _classes(_ctrl(scope)),
+    "[ctrl.type, 'progress-bar-' + ctrl.type]": (scope, filters) => [ _type(_ctrl(scope)), autoConvertAdd(r'progress-bar-', _type(_ctrl(scope))) ],
+    "ctrl.reset()": (scope, filters) => ensureFunction(_reset(_ctrl(scope)), "reset")(),
+    "ctrl.range": (scope, filters) => _range(_ctrl(scope)),
+    "ctrl.stateClass(\$index, r)": (scope, filters) => ensureFunction(_stateClass(_ctrl(scope)), "stateClass")(_$index(scope), _r(scope)),
+    "ctrl.rate(\$index + 1)": (scope, filters) => ensureFunction(_rate(_ctrl(scope)), "rate")(autoConvertAdd(_$index(scope), 1)),
+    "ctrl.enter(\$index + 1)": (scope, filters) => ensureFunction(_enter(_ctrl(scope)), "enter")(autoConvertAdd(_$index(scope), 1)),
+    "messages": (scope, filters) => _messages(scope),
+    "": (scope, filters) {
       var result, last;
       return result;
     },
-    "value": (scope) => _value(scope),
-    "close": (scope) => _close(scope),
-    "isCloseOthers": (scope) => _isCloseOthers(scope),
-    "btnRadioAttr": (scope) => _btnRadioAttr(scope),
-    "btnCheckboxTrue": (scope) => _btnCheckboxTrue(scope),
-    "btnCheckboxFalse": (scope) => _btnCheckboxFalse(scope),
-    "c.pause()": (scope) => ensureFunction(_pause(_c(scope)), "pause")(),
-    "c.play()": (scope) => ensureFunction(_play(_c(scope)), "play")(),
-    "c.slides().length > 1": (scope) => (_length(ensureFunction(_slides(_c(scope)), "slides")()) > 1),
-    "c.slides()": (scope) => ensureFunction(_slides(_c(scope)), "slides")(),
-    "{active: c.isActive(slide)}": (scope) => { 'active': ensureFunction(_isActive(_c(scope)), "isActive")(_slide(scope)) },
-    "c.select(slide)": (scope) => ensureFunction(_select(_c(scope)), "select")(_slide(scope)),
-    "c.prev()": (scope) => ensureFunction(_prev(_c(scope)), "prev")(),
-    "c.next()": (scope) => ensureFunction(_next(_c(scope)), "next")(),
-    "active": (scope) => _active(scope),
-    "{\n    'active': s.leaving || (s.active && !s.entering),\n    'prev': (s.next || s.active) && s.direction=='prev',\n    'next': (s.next || s.active) && s.direction=='next',\n    'right': s.direction=='prev',\n    'left': s.direction=='next'\n  }": (scope) => { 'active': (toBool(_leaving(_s(scope))) || toBool((toBool(_active(_s(scope))) && toBool(!toBool(_entering(_s(scope))))))), 'prev': (toBool((toBool(_next(_s(scope))) || toBool(_active(_s(scope))))) && toBool((_direction(_s(scope)) == r'prev'))), 'next': (toBool((toBool(_next(_s(scope))) || toBool(_active(_s(scope))))) && toBool((_direction(_s(scope)) == r'next'))), 'right': (_direction(_s(scope)) == r'prev'), 'left': (_direction(_s(scope)) == r'next') },
-    "collapseAttr": (scope) => _collapseAttr(scope),
-    "isReadonly": (scope) => _isReadonly(scope),
-    "onHover": (scope) => _onHover(scope),
-    "onLeave": (scope) => _onLeave(scope),
-    "ratingStates": (scope) => _ratingStates(scope),
-    "stateOn": (scope) => _stateOn(scope),
-    "stateOff": (scope) => _stateOff(scope),
-    "bind": (scope) => _bind(scope),
-    "valueExpression": (scope) => _valueExpression(scope),
-    "onAbort": (scope) => _onAbort(scope),
-    "onBeforeCopy": (scope) => _onBeforeCopy(scope),
-    "onBeforeCut": (scope) => _onBeforeCut(scope),
-    "onBeforePaste": (scope) => _onBeforePaste(scope),
-    "onBlur": (scope) => _onBlur(scope),
-    "onChange": (scope) => _onChange(scope),
-    "onClick": (scope) => _onClick(scope),
-    "onContextMenu": (scope) => _onContextMenu(scope),
-    "onCopy": (scope) => _onCopy(scope),
-    "onCut": (scope) => _onCut(scope),
-    "onDoubleClick": (scope) => _onDoubleClick(scope),
-    "onDrag": (scope) => _onDrag(scope),
-    "onDragEnd": (scope) => _onDragEnd(scope),
-    "onDragEnter": (scope) => _onDragEnter(scope),
-    "onDragLeave": (scope) => _onDragLeave(scope),
-    "onDragOver": (scope) => _onDragOver(scope),
-    "onDragStart": (scope) => _onDragStart(scope),
-    "onDrop": (scope) => _onDrop(scope),
-    "onError": (scope) => _onError(scope),
-    "onFocus": (scope) => _onFocus(scope),
-    "onFullscreenChange": (scope) => _onFullscreenChange(scope),
-    "onFullscreenError": (scope) => _onFullscreenError(scope),
-    "onInput": (scope) => _onInput(scope),
-    "onInvalid": (scope) => _onInvalid(scope),
-    "onKeyDown": (scope) => _onKeyDown(scope),
-    "onKeyPress": (scope) => _onKeyPress(scope),
-    "onKeyUp": (scope) => _onKeyUp(scope),
-    "onLoad": (scope) => _onLoad(scope),
-    "onMouseDown": (scope) => _onMouseDown(scope),
-    "onMouseEnter": (scope) => _onMouseEnter(scope),
-    "onMouseLeave": (scope) => _onMouseLeave(scope),
-    "onMouseMove": (scope) => _onMouseMove(scope),
-    "onMouseOut": (scope) => _onMouseOut(scope),
-    "onMouseOver": (scope) => _onMouseOver(scope),
-    "onMouseUp": (scope) => _onMouseUp(scope),
-    "onMouseWheel": (scope) => _onMouseWheel(scope),
-    "onPaste": (scope) => _onPaste(scope),
-    "onReset": (scope) => _onReset(scope),
-    "onScroll": (scope) => _onScroll(scope),
-    "onSearch": (scope) => _onSearch(scope),
-    "onSelect": (scope) => _onSelect(scope),
-    "onSelectStart": (scope) => _onSelectStart(scope),
-    "onSubmit": (scope) => _onSubmit(scope),
-    "onTouchCancel": (scope) => _onTouchCancel(scope),
-    "onTouchEnd": (scope) => _onTouchEnd(scope),
-    "onTouchEnter": (scope) => _onTouchEnter(scope),
-    "onTouchLeave": (scope) => _onTouchLeave(scope),
-    "onTouchMove": (scope) => _onTouchMove(scope),
-    "onTouchStart": (scope) => _onTouchStart(scope),
-    "onTransitionEnd": (scope) => _onTransitionEnd(scope),
-    "condition": (scope) => _condition(scope),
-    "url": (scope) => _url(scope),
-    "model": (scope) => _model(scope),
-    "count": (scope) => _count(scope),
-    "expression": (scope) => _expression(scope),
-    "templateUrl": (scope) => _templateUrl(scope),
-    "hide": (scope) => _hide(scope),
-    "show": (scope) => _show(scope),
-    "checked": (scope) => _checked(scope),
-    "disabled": (scope) => _disabled(scope),
-    "multiple": (scope) => _multiple(scope),
-    "open": (scope) => _open(scope),
-    "readonly": (scope) => _readonly(scope),
-    "required": (scope) => _required(scope),
-    "href": (scope) => _href(scope),
-    "src": (scope) => _src(scope),
-    "srcset": (scope) => _srcset(scope),
-    "styleExpression": (scope) => _styleExpression(scope),
-    "ngValue": (scope) => _ngValue(scope),
-    "routeName": (scope) => _routeName(scope),
-    "heading": (scope) => _heading(scope),
-    "null": (scope) => null
+    "ctrl.allModules": (scope, filters) => _allModules(_ctrl(scope)),
+    "ctrl.modules": (scope, filters) => _modules(_ctrl(scope)),
+    "module.name": (scope, filters) => _name(_module(scope)),
+    "module.displayName": (scope, filters) => _displayName(_module(scope)),
+    "!ctrl.isCollapsed": (scope, filters) => !toBool(_isCollapsed(_ctrl(scope))),
+    " module.name ": (scope, filters) => _name(_module(scope)),
+    " module.displayName ": (scope, filters) => _displayName(_module(scope)),
+    "module.docs.md": (scope, filters) => _md(_docs(_module(scope))),
+    "module.docs.html": (scope, filters) => _html(_docs(_module(scope))),
+    "module.docs.dart": (scope, filters) => _dart(_docs(_module(scope))),
+    "buildErrorText": (scope, filters) => _buildErrorText(scope),
+    "selectedModules.length": (scope, filters) => _length(_selectedModules(scope)),
+    "value": (scope, filters) => _value(scope),
+    "close": (scope, filters) => _close(scope),
+    "isCloseOthers": (scope, filters) => _isCloseOthers(scope),
+    "btnRadioAttr": (scope, filters) => _btnRadioAttr(scope),
+    "btnCheckboxTrue": (scope, filters) => _btnCheckboxTrue(scope),
+    "btnCheckboxFalse": (scope, filters) => _btnCheckboxFalse(scope),
+    "noTransition": (scope, filters) => _noTransition(scope),
+    "interval": (scope, filters) => _interval(scope),
+    "noPause": (scope, filters) => _noPause(scope),
+    "c.pause()": (scope, filters) => ensureFunction(_pause(_c(scope)), "pause")(),
+    "c.play()": (scope, filters) => ensureFunction(_play(_c(scope)), "play")(),
+    "c.slides.length > 1": (scope, filters) => (_length(_slides(_c(scope))) > 1),
+    "c.slides": (scope, filters) => _slides(_c(scope)),
+    "{active: c.isActive(slide)}": (scope, filters) => { 'active': ensureFunction(_isActive(_c(scope)), "isActive")(_slide(scope)) },
+    "c.select(slide)": (scope, filters) => ensureFunction(_select(_c(scope)), "select")(_slide(scope)),
+    "c.prev()": (scope, filters) => ensureFunction(_prev(_c(scope)), "prev")(),
+    "c.next()": (scope, filters) => ensureFunction(_next(_c(scope)), "next")(),
+    "active": (scope, filters) => _active(scope),
+    "direction": (scope, filters) => _direction(scope),
+    "entering": (scope, filters) => _entering(scope),
+    "leaving": (scope, filters) => _leaving(scope),
+    "next": (scope, filters) => _next(scope),
+    "{\n    'active': s.leaving || (s.active && !s.entering),\n    'prev': (s.next || s.active) && s.direction=='prev',\n    'next': (s.next || s.active) && s.direction=='next',\n    'right': s.direction=='prev',\n    'left': s.direction=='next'\n  }": (scope, filters) => { 'active': (toBool(_leaving(_s(scope))) || toBool((toBool(_active(_s(scope))) && toBool(!toBool(_entering(_s(scope))))))), 'prev': (toBool((toBool(_next(_s(scope))) || toBool(_active(_s(scope))))) && toBool((_direction(_s(scope)) == r'prev'))), 'next': (toBool((toBool(_next(_s(scope))) || toBool(_active(_s(scope))))) && toBool((_direction(_s(scope)) == r'next'))), 'right': (_direction(_s(scope)) == r'prev'), 'left': (_direction(_s(scope)) == r'next') },
+    "isCollapsed": (scope, filters) => _isCollapsed(scope),
+    "animate": (scope, filters) => _animate(scope),
+    "isReadonly": (scope, filters) => _isReadonly(scope),
+    "onHover": (scope, filters) => _onHover(scope),
+    "onLeave": (scope, filters) => _onLeave(scope),
+    "ratingStates": (scope, filters) => _ratingStates(scope),
+    "stateOn": (scope, filters) => _stateOn(scope),
+    "stateOff": (scope, filters) => _stateOff(scope),
+    "windowClass": (scope, filters) => _windowClass(scope),
+    "keyboard": (scope, filters) => _keyboard(scope),
+    "backdropAsString": (scope, filters) => _backdropAsString(scope),
+    "visible": (scope, filters) => _visible(scope),
+    "bind": (scope, filters) => _bind(scope),
+    "valueExpression": (scope, filters) => _valueExpression(scope),
+    "onAbort": (scope, filters) => _onAbort(scope),
+    "onBeforeCopy": (scope, filters) => _onBeforeCopy(scope),
+    "onBeforeCut": (scope, filters) => _onBeforeCut(scope),
+    "onBeforePaste": (scope, filters) => _onBeforePaste(scope),
+    "onBlur": (scope, filters) => _onBlur(scope),
+    "onChange": (scope, filters) => _onChange(scope),
+    "onClick": (scope, filters) => _onClick(scope),
+    "onContextMenu": (scope, filters) => _onContextMenu(scope),
+    "onCopy": (scope, filters) => _onCopy(scope),
+    "onCut": (scope, filters) => _onCut(scope),
+    "onDoubleClick": (scope, filters) => _onDoubleClick(scope),
+    "onDrag": (scope, filters) => _onDrag(scope),
+    "onDragEnd": (scope, filters) => _onDragEnd(scope),
+    "onDragEnter": (scope, filters) => _onDragEnter(scope),
+    "onDragLeave": (scope, filters) => _onDragLeave(scope),
+    "onDragOver": (scope, filters) => _onDragOver(scope),
+    "onDragStart": (scope, filters) => _onDragStart(scope),
+    "onDrop": (scope, filters) => _onDrop(scope),
+    "onError": (scope, filters) => _onError(scope),
+    "onFocus": (scope, filters) => _onFocus(scope),
+    "onFullscreenChange": (scope, filters) => _onFullscreenChange(scope),
+    "onFullscreenError": (scope, filters) => _onFullscreenError(scope),
+    "onInput": (scope, filters) => _onInput(scope),
+    "onInvalid": (scope, filters) => _onInvalid(scope),
+    "onKeyDown": (scope, filters) => _onKeyDown(scope),
+    "onKeyPress": (scope, filters) => _onKeyPress(scope),
+    "onKeyUp": (scope, filters) => _onKeyUp(scope),
+    "onLoad": (scope, filters) => _onLoad(scope),
+    "onMouseDown": (scope, filters) => _onMouseDown(scope),
+    "onMouseEnter": (scope, filters) => _onMouseEnter(scope),
+    "onMouseLeave": (scope, filters) => _onMouseLeave(scope),
+    "onMouseMove": (scope, filters) => _onMouseMove(scope),
+    "onMouseOut": (scope, filters) => _onMouseOut(scope),
+    "onMouseOver": (scope, filters) => _onMouseOver(scope),
+    "onMouseUp": (scope, filters) => _onMouseUp(scope),
+    "onMouseWheel": (scope, filters) => _onMouseWheel(scope),
+    "onPaste": (scope, filters) => _onPaste(scope),
+    "onReset": (scope, filters) => _onReset(scope),
+    "onScroll": (scope, filters) => _onScroll(scope),
+    "onSearch": (scope, filters) => _onSearch(scope),
+    "onSelect": (scope, filters) => _onSelect(scope),
+    "onSelectStart": (scope, filters) => _onSelectStart(scope),
+    "onSubmit": (scope, filters) => _onSubmit(scope),
+    "onTouchCancel": (scope, filters) => _onTouchCancel(scope),
+    "onTouchEnd": (scope, filters) => _onTouchEnd(scope),
+    "onTouchEnter": (scope, filters) => _onTouchEnter(scope),
+    "onTouchLeave": (scope, filters) => _onTouchLeave(scope),
+    "onTouchMove": (scope, filters) => _onTouchMove(scope),
+    "onTouchStart": (scope, filters) => _onTouchStart(scope),
+    "onTransitionEnd": (scope, filters) => _onTransitionEnd(scope),
+    "condition": (scope, filters) => _condition(scope),
+    "url": (scope, filters) => _url(scope),
+    "name": (scope, filters) => _name(scope),
+    "model": (scope, filters) => _model(scope),
+    "count": (scope, filters) => _count(scope),
+    "expression": (scope, filters) => _expression(scope),
+    "templateUrl": (scope, filters) => _templateUrl(scope),
+    "hide": (scope, filters) => _hide(scope),
+    "show": (scope, filters) => _show(scope),
+    "checked": (scope, filters) => _checked(scope),
+    "disabled": (scope, filters) => _disabled(scope),
+    "multiple": (scope, filters) => _multiple(scope),
+    "open": (scope, filters) => _open(scope),
+    "readonly": (scope, filters) => _readonly(scope),
+    "required": (scope, filters) => _required(scope),
+    "href": (scope, filters) => _href(scope),
+    "src": (scope, filters) => _src(scope),
+    "srcset": (scope, filters) => _srcset(scope),
+    "styleExpression": (scope, filters) => _styleExpression(scope),
+    "ngValue": (scope, filters) => _ngValue(scope),
+    "pattern": (scope, filters) => _pattern(scope),
+    "minlength": (scope, filters) => _minlength(scope),
+    "maxlength": (scope, filters) => _maxlength(scope),
+    "routeName": (scope, filters) => _routeName(scope),
+    "heading": (scope, filters) => _heading(scope),
+    "null": (scope, filters) => null
   };
 }
 
-Map<String, Function> buildAssign(FilterLookup filters) {
+Map<String, Function> buildAssign() {
   return {
     "dynamicPopover": (scope, value) => _set$dynamicPopover(scope, value),
     "dynamicPopoverTitle": (scope, value) => _set$dynamicPopoverTitle(scope, value),
@@ -258,24 +299,25 @@ Map<String, Function> buildAssign(FilterLookup filters) {
     "currentPage": (scope, value) => _set$currentPage(scope, value),
     "bigCurrentPage": (scope, value) => _set$bigCurrentPage(scope, value),
     "numPages": (scope, value) => _set$numPages(scope, value),
-    "singleModel": (scope, value) => _set$singleModel(scope, value),
-    "checkModel": (scope, value) => _set$checkModel(scope, value),
-    "checkModel.left": (scope, value) => _set$left(_ensure$checkModel(scope), value),
-    "checkModel.middle": (scope, value) => _set$middle(_ensure$checkModel(scope), value),
-    "checkModel.right": (scope, value) => _set$right(_ensure$checkModel(scope), value),
-    "radioModel": (scope, value) => _set$radioModel(scope, value),
+    "ctrl.singleModel": (scope, value) => _set$singleModel(_ensure$ctrl(scope), value),
+    "ctrl.checkModelString": (scope, value) => _set$checkModelString(_ensure$ctrl(scope), value),
+    "ctrl.checkModel['left']": (scope, value) => setKeyed(_checkModel(_ctrl(scope)), r'left', value),
+    "ctrl.checkModel['middle']": (scope, value) => setKeyed(_checkModel(_ctrl(scope)), r'middle', value),
+    "ctrl.checkModel['right']": (scope, value) => setKeyed(_checkModel(_ctrl(scope)), r'right', value),
+    "ctrl.radioModel": (scope, value) => _set$radioModel(_ensure$ctrl(scope), value),
     "match.model.flag": (scope, value) => _set$flag(_ensure$model(_ensure$match(scope)), value),
     "selected ": (scope, value) => _set$selected(scope, value),
     "asyncSelected ": (scope, value) => _set$asyncSelected(scope, value),
     "asyncSelected": (scope, value) => _set$asyncSelected(scope, value),
     "loadingLocations": (scope, value) => _set$loadingLocations(scope, value),
     "customSelected": (scope, value) => _set$customSelected(scope, value),
-    "slides": (scope, value) => _set$slides(scope, value),
-    "slide.active": (scope, value) => _set$active(_ensure$slide(scope), value),
-    "slide.image": (scope, value) => _set$image(_ensure$slide(scope), value),
+    "ctrl.myInterval": (scope, value) => _set$myInterval(_ensure$ctrl(scope), value),
+    "ctrl.slides": (scope, value) => _set$slides(_ensure$ctrl(scope), value),
+    "slide['active']": (scope, value) => setKeyed(_slide(scope), r'active', value),
+    "slide['image']": (scope, value) => setKeyed(_slide(scope), r'image', value),
     "\$index": (scope, value) => _set$$index(scope, value),
-    "slide.text": (scope, value) => _set$text(_ensure$slide(scope), value),
-    "myInterval": (scope, value) => _set$myInterval(scope, value),
+    "slide['text']": (scope, value) => setKeyed(_slide(scope), r'text', value),
+    "ctrl.myIntervalAsString": (scope, value) => _set$myIntervalAsString(_ensure$ctrl(scope), value),
     "choice": (scope, value) => _set$choice(scope, value),
     "dynamic": (scope, value) => _set$dynamic(scope, value),
     "max": (scope, value) => _set$max(scope, value),
@@ -293,24 +335,51 @@ Map<String, Function> buildAssign(FilterLookup filters) {
     "ctrl.percent": (scope, value) => _set$percent(_ensure$ctrl(scope), value),
     "ctrl.ratingStates": (scope, value) => _set$ratingStates(_ensure$ctrl(scope), value),
     "ctrl.isCollapsed": (scope, value) => _set$isCollapsed(_ensure$ctrl(scope), value),
+    " m.windowClass ": (scope, value) => _set$windowClass(_ensure$m(scope), value),
     "ctrl.heading": (scope, value) => _set$heading(_ensure$ctrl(scope), value),
     "t.showable": (scope, value) => _set$showable(_ensure$t(scope), value),
+    "classes": (scope, value) => _set$classes(scope, value),
+    "ctrl.classes": (scope, value) => _set$classes(_ensure$ctrl(scope), value),
     "ctrl.range": (scope, value) => _set$range(_ensure$ctrl(scope), value),
     "messages": (scope, value) => _set$messages(scope, value),
+    "ctrl.allModules": (scope, value) => _set$allModules(_ensure$ctrl(scope), value),
+    "ctrl.modules": (scope, value) => _set$modules(_ensure$ctrl(scope), value),
+    "module.name": (scope, value) => _set$name(_ensure$module(scope), value),
+    "module.displayName": (scope, value) => _set$displayName(_ensure$module(scope), value),
+    " module.name ": (scope, value) => _set$name(_ensure$module(scope), value),
+    " module.displayName ": (scope, value) => _set$displayName(_ensure$module(scope), value),
+    "module.docs.md": (scope, value) => _set$md(_ensure$docs(_ensure$module(scope)), value),
+    "module.docs.html": (scope, value) => _set$html(_ensure$docs(_ensure$module(scope)), value),
+    "module.docs.dart": (scope, value) => _set$dart(_ensure$docs(_ensure$module(scope)), value),
+    "buildErrorText": (scope, value) => _set$buildErrorText(scope, value),
+    "selectedModules.length": (scope, value) => _set$length(_ensure$selectedModules(scope), value),
     "value": (scope, value) => _set$value(scope, value),
     "close": (scope, value) => _set$close(scope, value),
     "isCloseOthers": (scope, value) => _set$isCloseOthers(scope, value),
     "btnRadioAttr": (scope, value) => _set$btnRadioAttr(scope, value),
     "btnCheckboxTrue": (scope, value) => _set$btnCheckboxTrue(scope, value),
     "btnCheckboxFalse": (scope, value) => _set$btnCheckboxFalse(scope, value),
+    "noTransition": (scope, value) => _set$noTransition(scope, value),
+    "interval": (scope, value) => _set$interval(scope, value),
+    "noPause": (scope, value) => _set$noPause(scope, value),
+    "c.slides": (scope, value) => _set$slides(_ensure$c(scope), value),
     "active": (scope, value) => _set$active(scope, value),
-    "collapseAttr": (scope, value) => _set$collapseAttr(scope, value),
+    "direction": (scope, value) => _set$direction(scope, value),
+    "entering": (scope, value) => _set$entering(scope, value),
+    "leaving": (scope, value) => _set$leaving(scope, value),
+    "next": (scope, value) => _set$next(scope, value),
+    "isCollapsed": (scope, value) => _set$isCollapsed(scope, value),
+    "animate": (scope, value) => _set$animate(scope, value),
     "isReadonly": (scope, value) => _set$isReadonly(scope, value),
     "onHover": (scope, value) => _set$onHover(scope, value),
     "onLeave": (scope, value) => _set$onLeave(scope, value),
     "ratingStates": (scope, value) => _set$ratingStates(scope, value),
     "stateOn": (scope, value) => _set$stateOn(scope, value),
     "stateOff": (scope, value) => _set$stateOff(scope, value),
+    "windowClass": (scope, value) => _set$windowClass(scope, value),
+    "keyboard": (scope, value) => _set$keyboard(scope, value),
+    "backdropAsString": (scope, value) => _set$backdropAsString(scope, value),
+    "visible": (scope, value) => _set$visible(scope, value),
     "bind": (scope, value) => _set$bind(scope, value),
     "valueExpression": (scope, value) => _set$valueExpression(scope, value),
     "onAbort": (scope, value) => _set$onAbort(scope, value),
@@ -365,6 +434,7 @@ Map<String, Function> buildAssign(FilterLookup filters) {
     "onTransitionEnd": (scope, value) => _set$onTransitionEnd(scope, value),
     "condition": (scope, value) => _set$condition(scope, value),
     "url": (scope, value) => _set$url(scope, value),
+    "name": (scope, value) => _set$name(scope, value),
     "model": (scope, value) => _set$model(scope, value),
     "count": (scope, value) => _set$count(scope, value),
     "expression": (scope, value) => _set$expression(scope, value),
@@ -382,6 +452,9 @@ Map<String, Function> buildAssign(FilterLookup filters) {
     "srcset": (scope, value) => _set$srcset(scope, value),
     "styleExpression": (scope, value) => _set$styleExpression(scope, value),
     "ngValue": (scope, value) => _set$ngValue(scope, value),
+    "pattern": (scope, value) => _set$pattern(scope, value),
+    "minlength": (scope, value) => _set$minlength(scope, value),
+    "maxlength": (scope, value) => _set$maxlength(scope, value),
     "routeName": (scope, value) => _set$routeName(scope, value),
     "heading": (scope, value) => _set$heading(scope, value)
   };
@@ -567,24 +640,14 @@ _singleModel(o) {
   return (o is Map) ? o["singleModel"] : o.singleModel;
 }
 
+_checkModelString(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["checkModelString"] : o.checkModelString;
+}
+
 _checkModel(o) {
   if (o == null) return null;
   return (o is Map) ? o["checkModel"] : o.checkModel;
-}
-
-_left(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["left"] : o.left;
-}
-
-_middle(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["middle"] : o.middle;
-}
-
-_right(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["right"] : o.right;
 }
 
 _radioModel(o) {
@@ -622,6 +685,11 @@ _customSelected(o) {
   return (o is Map) ? o["customSelected"] : o.customSelected;
 }
 
+_myInterval(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["myInterval"] : o.myInterval;
+}
+
 _slides(o) {
   if (o == null) return null;
   return (o is Map) ? o["slides"] : o.slides;
@@ -632,24 +700,9 @@ _slide(o) {
   return (o is Map) ? o["slide"] : o.slide;
 }
 
-_active(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["active"] : o.active;
-}
-
-_image(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["image"] : o.image;
-}
-
 _$index(o) {
   if (o == null) return null;
   return (o is Map) ? o["\$index"] : o.$index;
-}
-
-_text(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["text"] : o.text;
 }
 
 _addSlide(o) {
@@ -657,9 +710,9 @@ _addSlide(o) {
   return (o is Map) ? o["addSlide"] : o.addSlide;
 }
 
-_myInterval(o) {
+_myIntervalAsString(o) {
   if (o == null) return null;
-  return (o is Map) ? o["myInterval"] : o.myInterval;
+  return (o is Map) ? o["myIntervalAsString"] : o.myIntervalAsString;
 }
 
 _choice(o) {
@@ -767,6 +820,31 @@ _isCollapsed(o) {
   return (o is Map) ? o["isCollapsed"] : o.isCollapsed;
 }
 
+_m(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["m"] : o.m;
+}
+
+_windowClass(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["windowClass"] : o.windowClass;
+}
+
+_animate(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["animate"] : o.animate;
+}
+
+_toString(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["toString"] : o.toString;
+}
+
+_close(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["close"] : o.close;
+}
+
 _heading(o) {
   if (o == null) return null;
   return (o is Map) ? o["heading"] : o.heading;
@@ -785,6 +863,11 @@ _closeHandler(o) {
 _showable(o) {
   if (o == null) return null;
   return (o is Map) ? o["showable"] : o.showable;
+}
+
+_classes(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["classes"] : o.classes;
 }
 
 _reset(o) {
@@ -817,9 +900,64 @@ _messages(o) {
   return (o is Map) ? o["messages"] : o.messages;
 }
 
-_close(o) {
+_allModules(o) {
   if (o == null) return null;
-  return (o is Map) ? o["close"] : o.close;
+  return (o is Map) ? o["allModules"] : o.allModules;
+}
+
+_modules(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["modules"] : o.modules;
+}
+
+_module(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["module"] : o.module;
+}
+
+_name(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["name"] : o.name;
+}
+
+_displayName(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["displayName"] : o.displayName;
+}
+
+_docs(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["docs"] : o.docs;
+}
+
+_md(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["md"] : o.md;
+}
+
+_html(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["html"] : o.html;
+}
+
+_dart(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["dart"] : o.dart;
+}
+
+_buildErrorText(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["buildErrorText"] : o.buildErrorText;
+}
+
+_selectedModules(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["selectedModules"] : o.selectedModules;
+}
+
+_length(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["length"] : o.length;
 }
 
 _isCloseOthers(o) {
@@ -842,6 +980,21 @@ _btnCheckboxFalse(o) {
   return (o is Map) ? o["btnCheckboxFalse"] : o.btnCheckboxFalse;
 }
 
+_noTransition(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["noTransition"] : o.noTransition;
+}
+
+_interval(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["interval"] : o.interval;
+}
+
+_noPause(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["noPause"] : o.noPause;
+}
+
 _c(o) {
   if (o == null) return null;
   return (o is Map) ? o["c"] : o.c;
@@ -855,11 +1008,6 @@ _pause(o) {
 _play(o) {
   if (o == null) return null;
   return (o is Map) ? o["play"] : o.play;
-}
-
-_length(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["length"] : o.length;
 }
 
 _isActive(o) {
@@ -882,19 +1030,9 @@ _next(o) {
   return (o is Map) ? o["next"] : o.next;
 }
 
-_s(o) {
+_active(o) {
   if (o == null) return null;
-  return (o is Map) ? o["s"] : o.s;
-}
-
-_leaving(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["leaving"] : o.leaving;
-}
-
-_entering(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["entering"] : o.entering;
+  return (o is Map) ? o["active"] : o.active;
 }
 
 _direction(o) {
@@ -902,9 +1040,19 @@ _direction(o) {
   return (o is Map) ? o["direction"] : o.direction;
 }
 
-_collapseAttr(o) {
+_entering(o) {
   if (o == null) return null;
-  return (o is Map) ? o["collapseAttr"] : o.collapseAttr;
+  return (o is Map) ? o["entering"] : o.entering;
+}
+
+_leaving(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["leaving"] : o.leaving;
+}
+
+_s(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["s"] : o.s;
 }
 
 _onHover(o) {
@@ -925,6 +1073,21 @@ _stateOn(o) {
 _stateOff(o) {
   if (o == null) return null;
   return (o is Map) ? o["stateOff"] : o.stateOff;
+}
+
+_keyboard(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["keyboard"] : o.keyboard;
+}
+
+_backdropAsString(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["backdropAsString"] : o.backdropAsString;
+}
+
+_visible(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["visible"] : o.visible;
 }
 
 _bind(o) {
@@ -1272,6 +1435,21 @@ _ngValue(o) {
   return (o is Map) ? o["ngValue"] : o.ngValue;
 }
 
+_pattern(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["pattern"] : o.pattern;
+}
+
+_minlength(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["minlength"] : o.minlength;
+}
+
+_maxlength(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["maxlength"] : o.maxlength;
+}
+
 _routeName(o) {
   if (o == null) return null;
   return (o is Map) ? o["routeName"] : o.routeName;
@@ -1313,18 +1491,6 @@ _ensure$group(o) {
   }
 }
 
-_ensure$checkModel(o) {
-  if (o == null) return null;
-  if (o is Map) {
-    var key = "checkModel";
-    var result = o[key];
-    return (result == null) ? result = o[key] = {} : result;
-  } else {
-    var result = o.checkModel;
-    return (result == null) ? result = o.checkModel = {} : result;
-  }
-}
-
 _ensure$match(o) {
   if (o == null) return null;
   if (o is Map) {
@@ -1349,18 +1515,6 @@ _ensure$model(o) {
   }
 }
 
-_ensure$slide(o) {
-  if (o == null) return null;
-  if (o is Map) {
-    var key = "slide";
-    var result = o[key];
-    return (result == null) ? result = o[key] = {} : result;
-  } else {
-    var result = o.slide;
-    return (result == null) ? result = o.slide = {} : result;
-  }
-}
-
 _ensure$bar(o) {
   if (o == null) return null;
   if (o is Map) {
@@ -1373,6 +1527,18 @@ _ensure$bar(o) {
   }
 }
 
+_ensure$m(o) {
+  if (o == null) return null;
+  if (o is Map) {
+    var key = "m";
+    var result = o[key];
+    return (result == null) ? result = o[key] = {} : result;
+  } else {
+    var result = o.m;
+    return (result == null) ? result = o.m = {} : result;
+  }
+}
+
 _ensure$t(o) {
   if (o == null) return null;
   if (o is Map) {
@@ -1382,6 +1548,54 @@ _ensure$t(o) {
   } else {
     var result = o.t;
     return (result == null) ? result = o.t = {} : result;
+  }
+}
+
+_ensure$module(o) {
+  if (o == null) return null;
+  if (o is Map) {
+    var key = "module";
+    var result = o[key];
+    return (result == null) ? result = o[key] = {} : result;
+  } else {
+    var result = o.module;
+    return (result == null) ? result = o.module = {} : result;
+  }
+}
+
+_ensure$docs(o) {
+  if (o == null) return null;
+  if (o is Map) {
+    var key = "docs";
+    var result = o[key];
+    return (result == null) ? result = o[key] = {} : result;
+  } else {
+    var result = o.docs;
+    return (result == null) ? result = o.docs = {} : result;
+  }
+}
+
+_ensure$selectedModules(o) {
+  if (o == null) return null;
+  if (o is Map) {
+    var key = "selectedModules";
+    var result = o[key];
+    return (result == null) ? result = o[key] = {} : result;
+  } else {
+    var result = o.selectedModules;
+    return (result == null) ? result = o.selectedModules = {} : result;
+  }
+}
+
+_ensure$c(o) {
+  if (o == null) return null;
+  if (o is Map) {
+    var key = "c";
+    var result = o[key];
+    return (result == null) ? result = o[key] = {} : result;
+  } else {
+    var result = o.c;
+    return (result == null) ? result = o.c = {} : result;
   }
 }
 
@@ -1495,23 +1709,8 @@ _set$singleModel(o, v) {
   return v;
 }
 
-_set$checkModel(o, v) {
-  if (o is Map) o["checkModel"] = v; else o.checkModel = v;
-  return v;
-}
-
-_set$left(o, v) {
-  if (o is Map) o["left"] = v; else o.left = v;
-  return v;
-}
-
-_set$middle(o, v) {
-  if (o is Map) o["middle"] = v; else o.middle = v;
-  return v;
-}
-
-_set$right(o, v) {
-  if (o is Map) o["right"] = v; else o.right = v;
+_set$checkModelString(o, v) {
+  if (o is Map) o["checkModelString"] = v; else o.checkModelString = v;
   return v;
 }
 
@@ -1540,18 +1739,13 @@ _set$customSelected(o, v) {
   return v;
 }
 
+_set$myInterval(o, v) {
+  if (o is Map) o["myInterval"] = v; else o.myInterval = v;
+  return v;
+}
+
 _set$slides(o, v) {
   if (o is Map) o["slides"] = v; else o.slides = v;
-  return v;
-}
-
-_set$active(o, v) {
-  if (o is Map) o["active"] = v; else o.active = v;
-  return v;
-}
-
-_set$image(o, v) {
-  if (o is Map) o["image"] = v; else o.image = v;
   return v;
 }
 
@@ -1560,13 +1754,8 @@ _set$$index(o, v) {
   return v;
 }
 
-_set$text(o, v) {
-  if (o is Map) o["text"] = v; else o.text = v;
-  return v;
-}
-
-_set$myInterval(o, v) {
-  if (o is Map) o["myInterval"] = v; else o.myInterval = v;
+_set$myIntervalAsString(o, v) {
+  if (o is Map) o["myIntervalAsString"] = v; else o.myIntervalAsString = v;
   return v;
 }
 
@@ -1640,6 +1829,11 @@ _set$isCollapsed(o, v) {
   return v;
 }
 
+_set$windowClass(o, v) {
+  if (o is Map) o["windowClass"] = v; else o.windowClass = v;
+  return v;
+}
+
 _set$heading(o, v) {
   if (o is Map) o["heading"] = v; else o.heading = v;
   return v;
@@ -1650,6 +1844,11 @@ _set$showable(o, v) {
   return v;
 }
 
+_set$classes(o, v) {
+  if (o is Map) o["classes"] = v; else o.classes = v;
+  return v;
+}
+
 _set$range(o, v) {
   if (o is Map) o["range"] = v; else o.range = v;
   return v;
@@ -1657,6 +1856,51 @@ _set$range(o, v) {
 
 _set$messages(o, v) {
   if (o is Map) o["messages"] = v; else o.messages = v;
+  return v;
+}
+
+_set$allModules(o, v) {
+  if (o is Map) o["allModules"] = v; else o.allModules = v;
+  return v;
+}
+
+_set$modules(o, v) {
+  if (o is Map) o["modules"] = v; else o.modules = v;
+  return v;
+}
+
+_set$name(o, v) {
+  if (o is Map) o["name"] = v; else o.name = v;
+  return v;
+}
+
+_set$displayName(o, v) {
+  if (o is Map) o["displayName"] = v; else o.displayName = v;
+  return v;
+}
+
+_set$md(o, v) {
+  if (o is Map) o["md"] = v; else o.md = v;
+  return v;
+}
+
+_set$html(o, v) {
+  if (o is Map) o["html"] = v; else o.html = v;
+  return v;
+}
+
+_set$dart(o, v) {
+  if (o is Map) o["dart"] = v; else o.dart = v;
+  return v;
+}
+
+_set$buildErrorText(o, v) {
+  if (o is Map) o["buildErrorText"] = v; else o.buildErrorText = v;
+  return v;
+}
+
+_set$length(o, v) {
+  if (o is Map) o["length"] = v; else o.length = v;
   return v;
 }
 
@@ -1685,8 +1929,48 @@ _set$btnCheckboxFalse(o, v) {
   return v;
 }
 
-_set$collapseAttr(o, v) {
-  if (o is Map) o["collapseAttr"] = v; else o.collapseAttr = v;
+_set$noTransition(o, v) {
+  if (o is Map) o["noTransition"] = v; else o.noTransition = v;
+  return v;
+}
+
+_set$interval(o, v) {
+  if (o is Map) o["interval"] = v; else o.interval = v;
+  return v;
+}
+
+_set$noPause(o, v) {
+  if (o is Map) o["noPause"] = v; else o.noPause = v;
+  return v;
+}
+
+_set$active(o, v) {
+  if (o is Map) o["active"] = v; else o.active = v;
+  return v;
+}
+
+_set$direction(o, v) {
+  if (o is Map) o["direction"] = v; else o.direction = v;
+  return v;
+}
+
+_set$entering(o, v) {
+  if (o is Map) o["entering"] = v; else o.entering = v;
+  return v;
+}
+
+_set$leaving(o, v) {
+  if (o is Map) o["leaving"] = v; else o.leaving = v;
+  return v;
+}
+
+_set$next(o, v) {
+  if (o is Map) o["next"] = v; else o.next = v;
+  return v;
+}
+
+_set$animate(o, v) {
+  if (o is Map) o["animate"] = v; else o.animate = v;
   return v;
 }
 
@@ -1707,6 +1991,21 @@ _set$stateOn(o, v) {
 
 _set$stateOff(o, v) {
   if (o is Map) o["stateOff"] = v; else o.stateOff = v;
+  return v;
+}
+
+_set$keyboard(o, v) {
+  if (o is Map) o["keyboard"] = v; else o.keyboard = v;
+  return v;
+}
+
+_set$backdropAsString(o, v) {
+  if (o is Map) o["backdropAsString"] = v; else o.backdropAsString = v;
+  return v;
+}
+
+_set$visible(o, v) {
+  if (o is Map) o["visible"] = v; else o.visible = v;
   return v;
 }
 
@@ -2062,6 +2361,21 @@ _set$styleExpression(o, v) {
 
 _set$ngValue(o, v) {
   if (o is Map) o["ngValue"] = v; else o.ngValue = v;
+  return v;
+}
+
+_set$pattern(o, v) {
+  if (o is Map) o["pattern"] = v; else o.pattern = v;
+  return v;
+}
+
+_set$minlength(o, v) {
+  if (o is Map) o["minlength"] = v; else o.minlength = v;
+  return v;
+}
+
+_set$maxlength(o, v) {
+  if (o is Map) o["maxlength"] = v; else o.maxlength = v;
   return v;
 }
 

@@ -14,8 +14,9 @@ Demo page for [Dart Angular-UI](https://github.com/akserg/angular.dart.ui).
 
 #### update
 
-- change  directory to `angular.dart.ui.demo/bin`
-- run `dart generator.dart`
+- set `DART_SDK` environment variable `export DART_SDK=/path/to/dart-sdk`la 
+<!-- - change  directory to `angular.dart.ui.demo/bin` -->
+- run `dart bin/generator.dart`
 - change directory to `angular.dart.ui.demo`
 - ensure that index.dart imports `import 'initializer_prod.dart' as init;` and not `import 'initializer_dev.dart' as init;`
 - run `pub build`
@@ -23,6 +24,7 @@ Demo page for [Dart Angular-UI](https://github.com/akserg/angular.dart.ui).
 - change directory to `angular.dart.ui.demo_ghpages`
 - delete the build directory
 - copy the build directory from `angular.dart.ui.demo/build` to `angular.dart.ui.demo.gh_pages/build`
+- copy the lib directory from `angular.dart.ui.demo/lib` to `angular.dart.ui.demo.gh_pages/build/packages/angular_ui_demo`
 - check in the changes in the `angular.dart.ui.demo.gh_pages` repository
 - push to the `gh_pages` branch
 

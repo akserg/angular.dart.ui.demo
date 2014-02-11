@@ -1,4 +1,4 @@
-library angular_ui_bootstrap.demo.app_initializer.prod;
+library app_initializer;
 
 import 'package:angular/angular.dart';
 import 'package:di/di.dart';
@@ -17,6 +17,5 @@ createInjector(List<Module> modules) {
 createParser(Module module) {
   module.type(Parser, implementedBy: StaticParser);
   module.factory(StaticParserFunctions,
-      (i) => ng_parser_gen.functions(i.get(FilterMap)));
-  //throw('not implemented'); // comment in commented lines
+      (i) => ng_parser_gen.functions());
 }
