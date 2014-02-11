@@ -24,7 +24,11 @@ Demo page for [Dart Angular-UI](https://github.com/akserg/angular.dart.ui).
 - change directory to `angular.dart.ui.demo_ghpages`
 - delete the build directory
 - copy the build directory from `angular.dart.ui.demo/build` to `angular.dart.ui.demo.gh_pages/build`
+`cp -R ../angular.dart.ui.demo/build/web build`
 - copy the lib directory from `angular.dart.ui.demo/lib` to `angular.dart.ui.demo.gh_pages/build/packages/angular_ui_demo`
+`cp -R ../angular.dart.ui.demo/lib/ build/packages/angular_ui_demo`
+- copy the lib directory from `angular.dart.ui/lib` to `angular.dart.ui.demo.gh_pages/build/packages/angular_ui`
+`cp -R ../angular.dart.ui/lib build/packages/angular_ui`
 - check in the changes in the `angular.dart.ui.demo.gh_pages` repository
 - push to the `gh_pages` branch
 
