@@ -123,13 +123,22 @@ Map<String, Function> buildEval() {
     "ctrl.isOpen = !ctrl.isOpen": (scope, filters) => _set$isOpen(_ensure$ctrl(scope), !toBool(_isOpen(_ctrl(scope)))),
     "ctrl.heading": (scope, filters) => _heading(_ctrl(scope)),
     "!ctrl.isOpen": (scope, filters) => !toBool(_isOpen(_ctrl(scope))),
-    "\"alert-\" + (t.type != null ? t.type : \"warning\")": (scope, filters) => autoConvertAdd(r'alert-', toBool((_type(_t(scope)) != null)) ? _type(_t(scope)) : r'warning'),
-    "t.closeHandler()": (scope, filters) => ensureFunction(_closeHandler(_t(scope)), "closeHandler")(),
-    "t.showable": (scope, filters) => _showable(_t(scope)),
+    "{\n    'active': s.leaving || (s.active && !s.entering),\n    'prev': (s.next || s.active) && s.direction=='prev',\n    'next': (s.next || s.active) && s.direction=='next',\n    'right': s.direction=='prev',\n    'left': s.direction=='next'\n  }": (scope, filters) => { 'active': (toBool(_leaving(_s(scope))) || toBool((toBool(_active(_s(scope))) && toBool(!toBool(_entering(_s(scope))))))), 'prev': (toBool((toBool(_next(_s(scope))) || toBool(_active(_s(scope))))) && toBool((_direction(_s(scope)) == r'prev'))), 'next': (toBool((toBool(_next(_s(scope))) || toBool(_active(_s(scope))))) && toBool((_direction(_s(scope)) == r'next'))), 'right': (_direction(_s(scope)) == r'prev'), 'left': (_direction(_s(scope)) == r'next') },
+    "c.pause()": (scope, filters) => ensureFunction(_pause(_c(scope)), "pause")(),
+    "c.play()": (scope, filters) => ensureFunction(_play(_c(scope)), "play")(),
+    "c.slides.length > 1": (scope, filters) => (_length(_slides(_c(scope))) > 1),
+    "c.slides": (scope, filters) => _slides(_c(scope)),
+    "{active: c.isActive(slide)}": (scope, filters) => { 'active': ensureFunction(_isActive(_c(scope)), "isActive")(_slide(scope)) },
+    "c.select(slide)": (scope, filters) => ensureFunction(_select(_c(scope)), "select")(_slide(scope)),
+    "c.prev()": (scope, filters) => ensureFunction(_prev(_c(scope)), "prev")(),
+    "c.next()": (scope, filters) => ensureFunction(_next(_c(scope)), "next")(),
     "classes": (scope, filters) => _classes(scope),
     "[ctrl.type, 'progress-bar-' + ctrl.type,  ctrl.classes]": (scope, filters) => [ _type(_ctrl(scope)), autoConvertAdd(r'progress-bar-', _type(_ctrl(scope))), _classes(_ctrl(scope)) ],
     "ctrl.classes": (scope, filters) => _classes(_ctrl(scope)),
     "[ctrl.type, 'progress-bar-' + ctrl.type]": (scope, filters) => [ _type(_ctrl(scope)), autoConvertAdd(r'progress-bar-', _type(_ctrl(scope))) ],
+    "\"alert-\" + (t.type != null ? t.type : \"warning\")": (scope, filters) => autoConvertAdd(r'alert-', toBool((_type(_t(scope)) != null)) ? _type(_t(scope)) : r'warning'),
+    "t.closeHandler()": (scope, filters) => ensureFunction(_closeHandler(_t(scope)), "closeHandler")(),
+    "t.showable": (scope, filters) => _showable(_t(scope)),
     "ctrl.reset()": (scope, filters) => ensureFunction(_reset(_ctrl(scope)), "reset")(),
     "ctrl.range": (scope, filters) => _range(_ctrl(scope)),
     "ctrl.stateClass(\$index, r)": (scope, filters) => ensureFunction(_stateClass(_ctrl(scope)), "stateClass")(_$index(scope), _r(scope)),
@@ -161,20 +170,11 @@ Map<String, Function> buildEval() {
     "noTransition": (scope, filters) => _noTransition(scope),
     "interval": (scope, filters) => _interval(scope),
     "noPause": (scope, filters) => _noPause(scope),
-    "c.pause()": (scope, filters) => ensureFunction(_pause(_c(scope)), "pause")(),
-    "c.play()": (scope, filters) => ensureFunction(_play(_c(scope)), "play")(),
-    "c.slides.length > 1": (scope, filters) => (_length(_slides(_c(scope))) > 1),
-    "c.slides": (scope, filters) => _slides(_c(scope)),
-    "{active: c.isActive(slide)}": (scope, filters) => { 'active': ensureFunction(_isActive(_c(scope)), "isActive")(_slide(scope)) },
-    "c.select(slide)": (scope, filters) => ensureFunction(_select(_c(scope)), "select")(_slide(scope)),
-    "c.prev()": (scope, filters) => ensureFunction(_prev(_c(scope)), "prev")(),
-    "c.next()": (scope, filters) => ensureFunction(_next(_c(scope)), "next")(),
     "active": (scope, filters) => _active(scope),
     "direction": (scope, filters) => _direction(scope),
     "entering": (scope, filters) => _entering(scope),
     "leaving": (scope, filters) => _leaving(scope),
     "next": (scope, filters) => _next(scope),
-    "{\n    'active': s.leaving || (s.active && !s.entering),\n    'prev': (s.next || s.active) && s.direction=='prev',\n    'next': (s.next || s.active) && s.direction=='next',\n    'right': s.direction=='prev',\n    'left': s.direction=='next'\n  }": (scope, filters) => { 'active': (toBool(_leaving(_s(scope))) || toBool((toBool(_active(_s(scope))) && toBool(!toBool(_entering(_s(scope))))))), 'prev': (toBool((toBool(_next(_s(scope))) || toBool(_active(_s(scope))))) && toBool((_direction(_s(scope)) == r'prev'))), 'next': (toBool((toBool(_next(_s(scope))) || toBool(_active(_s(scope))))) && toBool((_direction(_s(scope)) == r'next'))), 'right': (_direction(_s(scope)) == r'prev'), 'left': (_direction(_s(scope)) == r'next') },
     "isCollapsed": (scope, filters) => _isCollapsed(scope),
     "animate": (scope, filters) => _animate(scope),
     "isReadonly": (scope, filters) => _isReadonly(scope),
@@ -185,8 +185,8 @@ Map<String, Function> buildEval() {
     "stateOff": (scope, filters) => _stateOff(scope),
     "windowClass": (scope, filters) => _windowClass(scope),
     "keyboard": (scope, filters) => _keyboard(scope),
+    "index": (scope, filters) => _index(scope),
     "backdropAsString": (scope, filters) => _backdropAsString(scope),
-    "visible": (scope, filters) => _visible(scope),
     "bind": (scope, filters) => _bind(scope),
     "valueExpression": (scope, filters) => _valueExpression(scope),
     "onAbort": (scope, filters) => _onAbort(scope),
@@ -337,9 +337,10 @@ Map<String, Function> buildAssign() {
     "ctrl.isCollapsed": (scope, value) => _set$isCollapsed(_ensure$ctrl(scope), value),
     " m.windowClass ": (scope, value) => _set$windowClass(_ensure$m(scope), value),
     "ctrl.heading": (scope, value) => _set$heading(_ensure$ctrl(scope), value),
-    "t.showable": (scope, value) => _set$showable(_ensure$t(scope), value),
+    "c.slides": (scope, value) => _set$slides(_ensure$c(scope), value),
     "classes": (scope, value) => _set$classes(scope, value),
     "ctrl.classes": (scope, value) => _set$classes(_ensure$ctrl(scope), value),
+    "t.showable": (scope, value) => _set$showable(_ensure$t(scope), value),
     "ctrl.range": (scope, value) => _set$range(_ensure$ctrl(scope), value),
     "messages": (scope, value) => _set$messages(scope, value),
     "ctrl.allModules": (scope, value) => _set$allModules(_ensure$ctrl(scope), value),
@@ -362,7 +363,6 @@ Map<String, Function> buildAssign() {
     "noTransition": (scope, value) => _set$noTransition(scope, value),
     "interval": (scope, value) => _set$interval(scope, value),
     "noPause": (scope, value) => _set$noPause(scope, value),
-    "c.slides": (scope, value) => _set$slides(_ensure$c(scope), value),
     "active": (scope, value) => _set$active(scope, value),
     "direction": (scope, value) => _set$direction(scope, value),
     "entering": (scope, value) => _set$entering(scope, value),
@@ -378,8 +378,8 @@ Map<String, Function> buildAssign() {
     "stateOff": (scope, value) => _set$stateOff(scope, value),
     "windowClass": (scope, value) => _set$windowClass(scope, value),
     "keyboard": (scope, value) => _set$keyboard(scope, value),
+    "index": (scope, value) => _set$index(scope, value),
     "backdropAsString": (scope, value) => _set$backdropAsString(scope, value),
-    "visible": (scope, value) => _set$visible(scope, value),
     "bind": (scope, value) => _set$bind(scope, value),
     "valueExpression": (scope, value) => _set$valueExpression(scope, value),
     "onAbort": (scope, value) => _set$onAbort(scope, value),
@@ -850,6 +850,76 @@ _heading(o) {
   return (o is Map) ? o["heading"] : o.heading;
 }
 
+_s(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["s"] : o.s;
+}
+
+_leaving(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["leaving"] : o.leaving;
+}
+
+_active(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["active"] : o.active;
+}
+
+_entering(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["entering"] : o.entering;
+}
+
+_next(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["next"] : o.next;
+}
+
+_direction(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["direction"] : o.direction;
+}
+
+_c(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["c"] : o.c;
+}
+
+_pause(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["pause"] : o.pause;
+}
+
+_play(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["play"] : o.play;
+}
+
+_length(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["length"] : o.length;
+}
+
+_isActive(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["isActive"] : o.isActive;
+}
+
+_select(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["select"] : o.select;
+}
+
+_prev(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["prev"] : o.prev;
+}
+
+_classes(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["classes"] : o.classes;
+}
+
 _t(o) {
   if (o == null) return null;
   return (o is Map) ? o["t"] : o.t;
@@ -863,11 +933,6 @@ _closeHandler(o) {
 _showable(o) {
   if (o == null) return null;
   return (o is Map) ? o["showable"] : o.showable;
-}
-
-_classes(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["classes"] : o.classes;
 }
 
 _reset(o) {
@@ -955,11 +1020,6 @@ _selectedModules(o) {
   return (o is Map) ? o["selectedModules"] : o.selectedModules;
 }
 
-_length(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["length"] : o.length;
-}
-
 _isCloseOthers(o) {
   if (o == null) return null;
   return (o is Map) ? o["isCloseOthers"] : o.isCloseOthers;
@@ -995,66 +1055,6 @@ _noPause(o) {
   return (o is Map) ? o["noPause"] : o.noPause;
 }
 
-_c(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["c"] : o.c;
-}
-
-_pause(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["pause"] : o.pause;
-}
-
-_play(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["play"] : o.play;
-}
-
-_isActive(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["isActive"] : o.isActive;
-}
-
-_select(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["select"] : o.select;
-}
-
-_prev(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["prev"] : o.prev;
-}
-
-_next(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["next"] : o.next;
-}
-
-_active(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["active"] : o.active;
-}
-
-_direction(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["direction"] : o.direction;
-}
-
-_entering(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["entering"] : o.entering;
-}
-
-_leaving(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["leaving"] : o.leaving;
-}
-
-_s(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["s"] : o.s;
-}
-
 _onHover(o) {
   if (o == null) return null;
   return (o is Map) ? o["onHover"] : o.onHover;
@@ -1080,14 +1080,14 @@ _keyboard(o) {
   return (o is Map) ? o["keyboard"] : o.keyboard;
 }
 
+_index(o) {
+  if (o == null) return null;
+  return (o is Map) ? o["index"] : o.index;
+}
+
 _backdropAsString(o) {
   if (o == null) return null;
   return (o is Map) ? o["backdropAsString"] : o.backdropAsString;
-}
-
-_visible(o) {
-  if (o == null) return null;
-  return (o is Map) ? o["visible"] : o.visible;
 }
 
 _bind(o) {
@@ -1539,6 +1539,18 @@ _ensure$m(o) {
   }
 }
 
+_ensure$c(o) {
+  if (o == null) return null;
+  if (o is Map) {
+    var key = "c";
+    var result = o[key];
+    return (result == null) ? result = o[key] = {} : result;
+  } else {
+    var result = o.c;
+    return (result == null) ? result = o.c = {} : result;
+  }
+}
+
 _ensure$t(o) {
   if (o == null) return null;
   if (o is Map) {
@@ -1584,18 +1596,6 @@ _ensure$selectedModules(o) {
   } else {
     var result = o.selectedModules;
     return (result == null) ? result = o.selectedModules = {} : result;
-  }
-}
-
-_ensure$c(o) {
-  if (o == null) return null;
-  if (o is Map) {
-    var key = "c";
-    var result = o[key];
-    return (result == null) ? result = o[key] = {} : result;
-  } else {
-    var result = o.c;
-    return (result == null) ? result = o.c = {} : result;
   }
 }
 
@@ -1839,13 +1839,13 @@ _set$heading(o, v) {
   return v;
 }
 
-_set$showable(o, v) {
-  if (o is Map) o["showable"] = v; else o.showable = v;
+_set$classes(o, v) {
+  if (o is Map) o["classes"] = v; else o.classes = v;
   return v;
 }
 
-_set$classes(o, v) {
-  if (o is Map) o["classes"] = v; else o.classes = v;
+_set$showable(o, v) {
+  if (o is Map) o["showable"] = v; else o.showable = v;
   return v;
 }
 
@@ -1999,13 +1999,13 @@ _set$keyboard(o, v) {
   return v;
 }
 
-_set$backdropAsString(o, v) {
-  if (o is Map) o["backdropAsString"] = v; else o.backdropAsString = v;
+_set$index(o, v) {
+  if (o is Map) o["index"] = v; else o.index = v;
   return v;
 }
 
-_set$visible(o, v) {
-  if (o is Map) o["visible"] = v; else o.visible = v;
+_set$backdropAsString(o, v) {
+  if (o is Map) o["backdropAsString"] = v; else o.backdropAsString = v;
   return v;
 }
 

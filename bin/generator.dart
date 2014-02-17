@@ -16,7 +16,7 @@ main() {
       'angular.core.NgFilter,'
       'injectable.InjectableService,'
       'angular.core.service.NgInjectableService,'
-      'angular.ui.demo.injectable_service';
+      'angular.ui.utils.injectable_service';
   var diOutputFile = 'web/di_factories_gen.dart';
   var packageRoots = 'packages';
 

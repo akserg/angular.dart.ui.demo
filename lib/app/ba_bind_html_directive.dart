@@ -76,11 +76,15 @@ class BaBindHtmlDirective {
    * documention.
    */
   set value(value) {
+    if(value == null) {
+      _element.nodes.clear();
+      return;
+    }
     _element.setInnerHtml((value == null ? '' : value.toString()),
                                              validator: validator);
+    //_log.finest(value);
     if(value != null) {
-      BlockFactory template = _compiler(_element.children, _directiveMap);
-      Block block = template.bind(_injector)(_scope);
+      _compiler(_element.childNodes, _directiveMap)(_injector, _element.childNodes);
     }
   }
 }
