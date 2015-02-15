@@ -21,6 +21,7 @@ import 'package:angular_ui_demo/header/header_component.dart';
 import 'package:angular_ui_demo/module/module_component.dart';
 import 'package:angular_ui_demo/getting_started/getting_started_component.dart';
 import 'package:angular_ui_demo/sidebar/sidebar_component.dart';
+import 'package:angular_ui_demo/jumbotron/jumbotron_component.dart';
 
 import 'package:angular_ui_demo/accordion/demo.dart';
 
@@ -58,6 +59,7 @@ class DemoModule extends Module {
     bind(ModuleComponent);
     bind(GettingStartedComponent);
     bind(SidebarComponent);
+    bind(JumbotronComponent);
     // Demo Components
     bind(AccordionDemoComponent);
   }

@@ -5,7 +5,6 @@ import 'dart:async' show Completer, Future;
 import 'dart:math' show Random;
 
 import "package:angular/angular.dart";
-import "package:angular/core_dom/module_internal.dart" show NodeAttrs;
 import 'package:markdown/markdown.dart' as markdown;
 import 'package:logging/logging.dart' show Logger;
 import 'package:angular_ui/utils/utils.dart' show compile;
