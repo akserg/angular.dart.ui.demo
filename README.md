@@ -1,4 +1,4 @@
-angular.dart.ui.demo [![Build Status](https://drone.io/github.com/akserg/angular.dart.ui.demo/status.png)](https://drone.io/github.com/akserg/angular.dart.ui.demo/latest)
+AngularDart UI Demo
 ====================
 
 ### Demo
