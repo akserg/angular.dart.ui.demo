@@ -1,19 +1,25 @@
 library angular.ui.demo.accordion;
 
 import 'package:angular/angular.dart';
-
 import 'package:logging/logging.dart' show Logger;
-final _log = new Logger('demo.accordion');
 
-@NgController(
-    selector: '[ng-controller=accordion-demo-ctrl]',
-    publishAs: 'ctrl')
-class AccordionDemoController {
-  AccordionDemoController() {
-    _log.fine('AccordionDemoController');
-  }
+final _log = new Logger('angular.ui.demo.accordion');
+
+@Component(
+  selector: 'accordion-demo',
+  templateUrl: 'demo.html',
+  exportExpressions: const ['oneAtATime', 'isOpen', 'groups', 'items', 'title', 'content', 'addItem'],
+  useShadowDom: false)
+class AccordionDemoComponent implements ScopeAware {
+  
+  Scope scope;
 
   bool oneAtATime = true;
+  bool isOpen = false;
+  
+  AccordionDemoComponent() {
+    _log.fine('AccordionDemo');
+  }
 
   final List<Map<String, String>> groups = [
       {
