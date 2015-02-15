@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Copyright (C) 2013 - 2014 Angular Dart UI authors. Please see AUTHORS.md.
+Copyright (C) 2013 - 2015 Angular Dart UI authors. Please see AUTHORS.md.
 https://github.com/akserg/angular.dart.ui
 All rights reserved.  Please see the LICENSE.md file.
 -->
@@ -10,11 +10,12 @@ All rights reserved.  Please see the LICENSE.md file.
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>AngularDart directives for Twitter's Bootstrap</title>
-    <meta name="description" content="AngularDart (Angular) native directives for Twitter Bootstrap. Small footprint, no 3rd party JS dependencies (jQuery, bootstrap JS) required! Widgets: {{ctrl.allModules}}">
-    <link rel="stylesheet" href="assets/rainbow.css"/>
-<!--     <link rel="stylesheet" href="assets/bootstrap.css"> -->
+    <meta name="description" content="AngularDart (Angular) native directives for Twitter Bootstrap written on Dart.">
+
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/rainbow.css"/>
     <link rel="stylesheet" href="packages/angular_ui/css/angular.css">
     <link rel="stylesheet" href="packages/angular_ui/carousel/slide.css">
     <link rel="stylesheet" href="assets/main.css">
@@ -23,19 +24,10 @@ All rights reserved.  Please see the LICENSE.md file.
     <header-component></header-component>
     
     <div class="header-placeholder"></div>
-    <div role="main">
-      <header class="bs-header text-center" id="overview">
-        <div class="container">
-          <h1>UI Bootstrap</h1>
-          <p>Bootstrap components written in pure <a href="https://github.com/angular/angular.dart">AngularDart</a> by <a
-                  href="https://github.com/akserg/angular.dart.ui/blob/master/AUTHORS.md">see authors file</a></p>
-          <p>a Dart port of <a href="http://angular-ui.github.io/bootstrap/">AngularJS UI Bootstrap</a></p>
-          <p>
-              <a class="btn btn-outline-inverse btn-lg" href="https://github.com/akserg/angular.dart.ui"><i class="icon-github"></i>Code on Github</a>
-          </p>
-        </div>
-      </header>
     
+    <div role="main">
+      <jumbotron-component></jumbotron-component>
+  
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -46,11 +38,11 @@ All rights reserved.  Please see the LICENSE.md file.
         </div>
       </div>
     </div>
-    
+
     <footer class="footer">
       <div class="container">
         <p>Built (ported from JavaScript) by <a href="https://github.com/akserg/angular.dart.ui/blob/master/AUTHORS.md" target="_blank">see authors file</a> or <a href="https://github.com/akserg/angular.dart.ui/graphs/contributors" target="_blank">contributors list</a>.</p>
-        <p>Code licensed under <a href="https://github.com/akserg/angular.dart.ui/blob/master/LICENSE">MIT License</a>.</p>
+        <p>Code licensed under <a href="https://github.com/akserg/angular.dart.ui/blob/master/LICENSE">Apache License, Version 2.0</a>.</p>
         <p><a href="https://github.com/akserg/angular.dart.ui/issues?state=open">Issues</a></p>
       </div>
     </footer>
