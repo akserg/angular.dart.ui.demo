@@ -1,0 +1,26 @@
+<section class="getting_started" id="getting_started">
+  <div class="page-header">
+    <h1>Getting started</h1>
+  </div>
+  <h3>Dependencies</h3>
+  <p>
+      This repository contains a set of <strong>native AngularDart directives</strong> based on
+      Twitter Bootstrap's markup and CSS. As a result no dependency on jQuery or Bootstrap's
+      JavaScript is required. The <strong>only required dependencies</strong> are:
+  </p>
+  <ul>
+      <li><a href="http://getbootstrap.com" target="_blank">Bootstrap CSS</a> (version 3.0.3)</li>
+  </ul>
+  <h3>Installation</h3> <!-- TODO -->
+  <h3>CSS</h3>
+  <p>Original Bootstrap's CSS depends on empty <code>href</code> attributes to style cursors for several components (pagination, tabs etc.).
+     But in AngularDart adding empty <code>href</code> attributes to link tags will cause unwanted route changes.
+     This is why we need to remove empty <code>href</code> attributes from directive templates and as a result
+     styling is not applied correctly. The remedy is simple, just add the following styling to your application:
+     <code>
+         .nav, .pagination, .carousel, .panel-title a {
+              cursor: pointer;
+         }
+     </code>
+  </p>
+</section>

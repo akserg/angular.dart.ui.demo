@@ -1,0 +1,28 @@
+<section id='{{module.name}}' ng-repeat='module in modules'>
+  <div class="page-header">
+    <h1>{{module.displayName}}<small>
+        (<a target="_blank" href="https://github.com/akserg/angular.dart.ui/tree/master/lib/{{module.name}}">Angular UI {{module.name}}</a>)
+    </small></h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6" inject='module.componentName'></div>
+    <div class="col-md-6" ng-bind-html='module.docs.md'></div>
+  </div>
+  <hr>
+  <div class="row code">
+    <div class="col-md-12">
+      <tabset>
+        <tab heading="Markup">
+          <div>
+            <pre><code data-language='html' ng-bind='module.docs.html' ng-non-bindable></code></pre>
+          </div>
+        </tab>
+        <tab heading="Dart">
+          <div>
+            <pre><code data-language="dart" ng-bind='module.docs.dart' ng-non-bindable ></code></pre>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</section>

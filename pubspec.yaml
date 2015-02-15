@@ -1,8 +1,0 @@
-name:  bootstrap_angular_ghpages
-description:  Demo pages for AngularDart UI Bootstrap elements
-
-dependencies:
-  angular:
-    git: https://github.com/angular/angular.dart.git
-  angular_ui_bootstrap:
-    path: ../angular_ui_bootstrap
