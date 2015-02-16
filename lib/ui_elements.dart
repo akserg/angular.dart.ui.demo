@@ -64,9 +64,9 @@ class UiElement {
 @Injectable()
 class UiElementList implements List<UiElement> {
   static final List<UiElement> _modules = [
-     new UiElement('accordion', 'Accordion', '<accordion-demo></accordion-demo>')
-//     new UiElement('alert', 'Alert'),
-//     new UiElement('buttons', 'Buttons'),
+     new UiElement('accordion', 'Accordion', '<accordion-demo></accordion-demo>'),
+     new UiElement('alert', 'Alert', '<alert-demo></alert-demo>'),
+     new UiElement('button', 'Button', '<button-demo></button-demo>'),
 //     new UiElement('carousel', 'Carousel'),
 //     new UiElement('collapse', 'Collapse'),
 //     new UiElement('datepicker', 'Datepicker'),

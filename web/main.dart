@@ -15,15 +15,17 @@ import 'package:logging/logging.dart';
   'angular.ui.demo'
 ], override: '*')
 import 'dart:mirrors';
-
+// Services
 import 'package:angular_ui_demo/ui_elements.dart';
 import 'package:angular_ui_demo/header/header_component.dart';
 import 'package:angular_ui_demo/module/module_component.dart';
 import 'package:angular_ui_demo/getting_started/getting_started_component.dart';
 import 'package:angular_ui_demo/sidebar/sidebar_component.dart';
 import 'package:angular_ui_demo/jumbotron/jumbotron_component.dart';
-
+// Demo Components
 import 'package:angular_ui_demo/accordion/demo.dart';
+import 'package:angular_ui_demo/alert/demo.dart';
+import 'package:angular_ui_demo/button/demo.dart';
 
 /**
  * Entry point into app.
@@ -62,5 +64,7 @@ class DemoModule extends Module {
     bind(JumbotronComponent);
     // Demo Components
     bind(AccordionDemoComponent);
+    bind(AlertDemoComponent);
+    bind(ButtonDemoComponent);
   }
 }
