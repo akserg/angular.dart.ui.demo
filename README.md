@@ -1,7 +1,7 @@
 AngularDart UI Demo
 ====================
 
-Demo page for [Dart Angular-UI](http://akserg.github.io/angular.dart.ui.demo/index.html).
+[Demo](http://akserg.github.io/angular.dart.ui.demo/index.html) page for [Angular-UI](https://github.com/akserg/angular.dart.ui) project.
 
 
 ## Credits
