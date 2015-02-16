@@ -1,24 +1,23 @@
 <div>
-  <label class="checkbox">
-    <input type="checkbox" ng-model="oneAtATime">
-    Open only one at a time
-  </label>
+  <div class="checkbox">
+      <label>
+          <input type="checkbox" ng-model="oneAtATime"> Open only one at a time
+      </label>
+  </div>
 
   <accordion close-others="oneAtATime">
-    <accordion-group heading="Static Header, initially expanded" is-open="true">
+    <accordion-group heading="Static Header">
       This content is straight in the template.
     </accordion-group>
     <accordion-group heading="{{group['title']}}" ng-repeat="group in groups">
       {{group.content}}
     </accordion-group>
     <accordion-group heading="Dynamic Body Content">
-      <p>The body of the accordion group grows to fit the contents</p>
-      <button class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
-      <div ng-repeat="item in items">{{item}}</div>
+      <div ng-repeat="item in items"><span>{{item}}</span></div>
     </accordion-group>
-    <accordion-group is-open="isOpen">
+    <accordion-group is-open="isOpened">
       <accordion-heading>
-        I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
+        I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isOpened, 'glyphicon-chevron-right': !isOpened}"></i>
       </accordion-heading>
       This is just some content to illustrate fancy headings.
     </accordion-group>

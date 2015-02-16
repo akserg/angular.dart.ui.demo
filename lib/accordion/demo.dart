@@ -8,14 +8,14 @@ final _log = new Logger('angular.ui.demo.accordion');
 @Component(
   selector: 'accordion-demo',
   templateUrl: 'demo.html',
-  exportExpressions: const ['oneAtATime', 'isOpen', 'groups', 'items', 'title', 'content', 'addItem'],
+  exportExpressions: const ['oneAtATime', 'isOpened', 'groups', 'items', 'title', 'content'],
   useShadowDom: false)
 class AccordionDemoComponent implements ScopeAware {
   
   Scope scope;
 
   bool oneAtATime = true;
-  bool isOpen = false;
+  bool isOpened = false;
   
   AccordionDemoComponent() {
     _log.fine('AccordionDemo');
@@ -32,9 +32,4 @@ class AccordionDemoComponent implements ScopeAware {
       }];
 
   List<String> items = ['Item 1', 'Item 2', 'Item 3'];
-
-  void addItem() {
-    var newItemNo = items.length + 1;
-    items.add('Item ${newItemNo}');
-  }
 }

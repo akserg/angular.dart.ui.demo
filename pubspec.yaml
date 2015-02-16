@@ -15,3 +15,5 @@ dependencies:
   markdown: '>=0.7.1+2 <0.8.0'
 transformers:
 - angular
+- $dart2js:
+    commandLineOptions: [--enable-experimental-mirrors]
