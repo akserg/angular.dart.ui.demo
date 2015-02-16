@@ -6,6 +6,10 @@
 - Add CollapseDemoComponent
 - Add DropdownToggleDemoComponent
 
+##Issues
+
+- Fix Accordion panels
+
 #Version 0.1.0
 
 ##Features
