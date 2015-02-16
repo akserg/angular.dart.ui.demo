@@ -26,6 +26,10 @@ import 'package:angular_ui_demo/jumbotron/jumbotron_component.dart';
 import 'package:angular_ui_demo/accordion/demo.dart';
 import 'package:angular_ui_demo/alert/demo.dart';
 import 'package:angular_ui_demo/button/demo.dart';
+import 'package:angular_ui_demo/carousel/demo.dart';
+import 'package:angular_ui_demo/collapse/demo.dart';
+//import 'package:angular_ui_demo/datepicker/demo.dart';
+import 'package:angular_ui_demo/dropdown_toggle/demo.dart';
 
 /**
  * Entry point into app.
@@ -66,5 +70,9 @@ class DemoModule extends Module {
     bind(AccordionDemoComponent);
     bind(AlertDemoComponent);
     bind(ButtonDemoComponent);
+    bind(CarouselDemoComponent);
+    bind(CollapseDemoComponent);
+    //bind(DatepickerDemoComponent);
+    bind(DropdownToggleDemoComponent);
   }
 }
