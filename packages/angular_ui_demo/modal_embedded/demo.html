@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Modal from template embedded in source code</div>
+  <div class="panel-body">
+    <div>
+      <div class="btn-group">
+          <button type="button" class="btn btn-primary" ng-model="backdrop" btn-radio="'true'">Dynamic Backdrop</button>
+          <button type="button" class="btn btn-primary" ng-model="backdrop" btn-radio="'false'">No Backdrop</button>
+          <button type="button" class="btn btn-primary" ng-model="backdrop" btn-radio="'static'">Static Backdrop</button>
+      </div>
+      <br/><br/>
+      <button class="btn btn-default" ng-click="open()">Open me!</button>
+      <div ng-show="selected != null">Selected: {{ selected }}</div>
+    </div>
+  </div>
+</div>

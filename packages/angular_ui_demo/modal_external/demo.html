@@ -1,0 +1,34 @@
+<script type="text/ng-template" id="template_2.html">
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">I'm a modal!</h4>
+</div>
+<div class="modal-body">
+  <ul>
+    <li ng-repeat="item in items">
+      <a ng-click="tmp = item">{{ item }}</a>
+    </li>
+  </ul>
+  Selected: <b>{{tmp}}</b><br>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <button type="button" class="btn btn-primary" ng-click="ok(tmp)">OK</button>
+</div>
+</script>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Modal from template page</div>
+  <div class="panel-body">
+    <div>
+      <div class="btn-group">
+          <button type="button" class="btn btn-primary" ng-model="backdrop" btn-radio="'true'">Dynamic Backdrop</button>
+          <button type="button" class="btn btn-primary" ng-model="backdrop" btn-radio="'false'">No Backdrop</button>
+          <button type="button" class="btn btn-primary" ng-model="backdrop" btn-radio="'static'">Static Backdrop</button>
+      </div>
+      <br/><br/>
+      <button class="btn btn-default" ng-click="openUrl('template_2.html')">Open me!</button>
+      <div ng-show="selected != null">Selected: {{selected}}</div>
+    </div>
+  </div>
+</div>
