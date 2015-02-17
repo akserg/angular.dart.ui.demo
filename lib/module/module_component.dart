@@ -9,7 +9,7 @@ final _log = new Logger('angular.ui.demo.module');
 @Component(
     selector: 'module-component',
     templateUrl: 'module_component.html',
-    exportExpressions: const ['modules', 'name', 'displayName', 'docs', 'html', 'dart', 'md', 'componentName', 'oneAtATime'],
+    exportExpressions: const ['modules', 'package', 'displayName', 'docs', 'html', 'dart', 'md', 'componentName', 'oneAtATime'],
     useShadowDom: false
 )
 class ModuleComponent implements ScopeAware {

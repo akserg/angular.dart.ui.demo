@@ -30,6 +30,8 @@ import 'package:angular_ui_demo/carousel/demo.dart';
 import 'package:angular_ui_demo/collapse/demo.dart';
 //import 'package:angular_ui_demo/datepicker/demo.dart';
 import 'package:angular_ui_demo/dropdown_toggle/demo.dart';
+import 'package:angular_ui_demo/modal_embedded/demo.dart';
+import 'package:angular_ui_demo/modal_external/demo.dart';
 
 /**
  * Entry point into app.
@@ -74,5 +76,7 @@ class DemoModule extends Module {
     bind(CollapseDemoComponent);
     //bind(DatepickerDemoComponent);
     bind(DropdownToggleDemoComponent);
+    bind(ModalEmbeddedDemoComponent);
+    bind(ModalExternalDemoComponent);
   }
 }

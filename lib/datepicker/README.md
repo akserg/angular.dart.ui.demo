@@ -1,9 +1,9 @@
-A clean, flexible, and fully customizable date picker.
+A clean, flexible, and fully customizable AngularDart-version of bootstrap's **Data Picker**.
 
 User can navigate through months and years.
 The datepicker shows dates that come from other than the main month being displayed. These other dates are also selectable.
 
-Everything is formatted using the [date filter](http://docs.angularjs.org/api/ng.filter:date) and thus is also localized.
+Everything is formatted using the [date filter](https://docs.angulardart.org/#angular/angular-formatter.Date) and thus is also localized.
 
 ### Datepicker Settings ###
 

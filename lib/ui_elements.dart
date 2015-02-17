@@ -22,12 +22,12 @@ class Docs {
 
 @Injectable()
 class UiElement {
-  final String name;
+  final String package;
   final String displayName;
   final String componentName;
   Docs docs;
 
-  UiElement(this.name, this.displayName, this.componentName) {
+  UiElement(this.package, this.displayName, this.componentName) {
     readSource().then((Docs d) => docs = d);
   }
 
@@ -35,9 +35,9 @@ class UiElement {
     var completer = new Completer<Docs>();
 
     Future.wait([
-      dom.HttpRequest.getString('packages/angular_ui_demo/${this.name}/demo.html').then((e) => e, onError: (e) => ''),
-      dom.HttpRequest.getString('packages/angular_ui_demo/${this.name}/README.md').then((e) => e, onError: (e) => ''),
-      dom.HttpRequest.getString('packages/angular_ui_demo/${this.name}/demo.dart').then((e) => e, onError: (e) => '')
+      dom.HttpRequest.getString('packages/angular_ui_demo/${this.package}/demo.html').then((e) => e, onError: (e) => ''),
+      dom.HttpRequest.getString('packages/angular_ui_demo/${this.package}/README.md').then((e) => e, onError: (e) => ''),
+      dom.HttpRequest.getString('packages/angular_ui_demo/${this.package}/demo.dart').then((e) => e, onError: (e) => '')
     ]).then((List<String> results) {
       String html = results[0];
       String md = results[1];
@@ -50,14 +50,14 @@ class UiElement {
   }
 
   @override
-  int get hashCode => this.name.hashCode;
+  int get hashCode => this.package.hashCode;
 
 
   bool operator==(other) {
     if (other is! UiElement) {
       return false;
     }
-    return (other.name == name);
+    return (other.package == package);
   }
 }
 
@@ -71,7 +71,8 @@ class UiElementList implements List<UiElement> {
      new UiElement('collapse', 'Collapse', '<collapse-demo></collapse-demo>'),
 //     new UiElement('datepicker', 'Datepicker', '<datepicker-demo></datepicker-demo>'),
      new UiElement('dropdown_toggle', 'Dropdown Toggle', '<dropdown-toggle-demo></dropdown-toggle-demo>'),
-//     new UiElement('modal', 'Modal'),
+     new UiElement('modal_embedded', 'Modal from embedded template', '<modal-embedded-demo></modal-embedded-demo>'),
+     new UiElement('modal_external', 'Modal from external template', '<modal-external-demo></modal-external-demo>'),
 //     new UiElement('pagination', 'Pagination'),
 //     new UiElement('popover', 'Popover'),
 //     new UiElement('progressbar', 'Progressbar'),
