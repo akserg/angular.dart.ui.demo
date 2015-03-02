@@ -8,22 +8,21 @@ final _log = new Logger('angular.ui.demo.carousel');
 @Component(
   selector: 'carousel-demo',
   templateUrl: 'demo.html',
-  exportExpressions: const ['myIntervalAsString', 'myInterval', 'slides', 'image', 'text', 'addSlide'],
+  exportExpressions: const ['myInterval', 'slides', 'image', 'text', 'addSlide'],
   useShadowDom: false)
 class CarouselDemoComponent {
 
-  // workaround until number conversion is supported by Angular
-  String _myInterval = '5000';
-  String get myIntervalAsString => _myInterval;
-  set myIntervalAsString(String newVal) {
-    _myInterval = newVal;
-    try {
-      myInterval = int.parse(newVal);
-    } catch(e){}
+  int _myInterval = 2;
+  set myInterval(int value) {
+    if (value == null) {
+      value = 0;
+    }
+    _myInterval = value;
   }
-  // workaround end
-
-  int myInterval = 5000;
+  int get myInterval {
+    return _myInterval;
+  }
+  
   List<Map<String,dynamic>> slides = [];
 
   CarouselDemoComponent() {
@@ -35,7 +34,7 @@ class CarouselDemoComponent {
   }
 
   void addSlide() {
-    int newWidth = 600 + slides.length;
+    int newWidth = 601 + slides.length;
     slides.add({
       'image': 'http://placekitten.com/${newWidth}/300',
       'text': ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +

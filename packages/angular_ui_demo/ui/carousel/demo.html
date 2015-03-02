@@ -1,6 +1,6 @@
 <div>
   <div style="height: 305px">
-    <carousel interval="myInterval">
+    <carousel interval="myInterval * 1000">
       <slide ng-repeat="slide in slides" active="slide['active']">
         <img ng-src="{{slide['image']}}" style="margin:auto;">
         <div class="carousel-caption">
@@ -15,7 +15,7 @@
       <a class="btn btn-info" ng-click="addSlide()">Add Slide</a>
     </div>
     <div class="col-md-6">
-      Interval, in milliseconds: <input type="number" class="form-control" ng-model="myIntervalAsString">
+      Interval, in milliseconds: <input type="number" class="form-control" ng-model="myInterval">
       <br />Enter a negative number to stop the interval.
     </div>
   </div>
