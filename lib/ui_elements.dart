@@ -35,9 +35,9 @@ class UiElement {
     var completer = new Completer<Docs>();
 
     Future.wait([
-      dom.HttpRequest.getString('packages/angular_ui_demo/${this.package}/demo.html').then((e) => e, onError: (e) => ''),
-      dom.HttpRequest.getString('packages/angular_ui_demo/${this.package}/README.md').then((e) => e, onError: (e) => ''),
-      dom.HttpRequest.getString('packages/angular_ui_demo/${this.package}/demo.dart').then((e) => e, onError: (e) => '')
+      dom.HttpRequest.getString('packages/angular_ui_demo/ui/${this.package}/demo.html').then((e) => e, onError: (e) => ''),
+      dom.HttpRequest.getString('packages/angular_ui_demo/ui/${this.package}/README.md').then((e) => e, onError: (e) => ''),
+      dom.HttpRequest.getString('packages/angular_ui_demo/ui/${this.package}/demo.dart').then((e) => e, onError: (e) => '')
     ]).then((List<String> results) {
       String html = results[0];
       String md = results[1];

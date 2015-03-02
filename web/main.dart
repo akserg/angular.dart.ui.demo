@@ -23,15 +23,15 @@ import 'package:angular_ui_demo/getting_started/getting_started_component.dart';
 import 'package:angular_ui_demo/sidebar/sidebar_component.dart';
 import 'package:angular_ui_demo/jumbotron/jumbotron_component.dart';
 // Demo Components
-import 'package:angular_ui_demo/accordion/demo.dart';
-import 'package:angular_ui_demo/alert/demo.dart';
-import 'package:angular_ui_demo/button/demo.dart';
-import 'package:angular_ui_demo/carousel/demo.dart';
-import 'package:angular_ui_demo/collapse/demo.dart';
-//import 'package:angular_ui_demo/datepicker/demo.dart';
-import 'package:angular_ui_demo/dropdown_toggle/demo.dart';
-import 'package:angular_ui_demo/modal_embedded/demo.dart';
-import 'package:angular_ui_demo/modal_external/demo.dart';
+import 'package:angular_ui_demo/ui/accordion/demo.dart';
+import 'package:angular_ui_demo/ui/alert/demo.dart';
+import 'package:angular_ui_demo/ui/button/demo.dart';
+import 'package:angular_ui_demo/ui/carousel/demo.dart';
+import 'package:angular_ui_demo/ui/collapse/demo.dart';
+//import 'package:angular_ui_demo/ui/datepicker/demo.dart';
+import 'package:angular_ui_demo/ui/dropdown_toggle/demo.dart';
+import 'package:angular_ui_demo/ui/modal_embedded/demo.dart';
+import 'package:angular_ui_demo/ui/modal_external/demo.dart';
 
 /**
  * Entry point into app.

@@ -15,3 +15,5 @@ drt-*
 test.log
 build/
 .pub
+.grunt
+node_modules

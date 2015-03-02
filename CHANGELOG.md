@@ -1,3 +1,9 @@
+#Version 0.3.1
+
+##Features
+
+- Added build automation of gh-pages
+
 #Version 0.3.0
 
 ##Features
